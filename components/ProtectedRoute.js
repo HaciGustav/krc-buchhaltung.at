@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "../lib/supabaseClient";
+import LogoutButton from "./LogoutButton";
 
 export default function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
@@ -48,6 +49,16 @@ export default function ProtectedRoute({ children }) {
     );
   }
 
-  // Wenn eingeloggt oder bereits auf der Login-Seite, render den Inhalt
-  return <>{children}</>;
+  // Wenn wir auf der Login-Seite sind, zeige NUR den Inhalt (ohne Logout-Button)
+  if (router.pathname === "/login") {
+    return <>{children}</>;
+  }
+
+  // Wenn wir eingeloggt sind (auf /aenderung etc.), render den Inhalt PLUS den Button
+  return (
+    <>
+      {children}
+      <LogoutButton />
+    </>
+  );  
 }
