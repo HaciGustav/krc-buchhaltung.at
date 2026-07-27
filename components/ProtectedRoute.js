@@ -1,64 +1,57 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "../lib/supabaseClient";
-import LogoutButton from "./LogoutButton";
 
 export default function ProtectedRoute({ children }) {
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
-    const checkUserClaims = async () => {
-      try {
-        const { data, error } = await supabase.auth.getClaims();
-        console.log("Türsteher-Check:", { data, error });
-
-        if (error || !data) {
-          console.log("Zutritt verweigert!");
-          
-          // DIE RETTUNG: Nur umleiten, wenn wir NICHT schon auf /login sind!
-          if (router.pathname !== "/login") {
-            router.push("/login");
-          } else {
-            // Wir sind schon auf /login, also lass die Seite laden
-            setLoading(false); 
-          }
-        } else {
-          setLoading(false);
-        }
-      } catch (err) {
-        console.error("Fehler im Türsteher:", err);
-        
-        // Auch beim Catch-Fehler die Endlosschleife verhindern
-        if (router.pathname !== "/login") {
-          router.push("/login");
-        } else {
-          setLoading(false);
-        }
+    // 1. Session prüfen beim Laden
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        router.replace("/login");
+      } else {
+        setAuthorized(true);
       }
     };
+    checkAuth();
 
-    checkUserClaims();
-  }, [router.pathname]); // <-- Hier router.pathname reinpacken
+    // 2. 30 Minuten Inaktivitäts-Timer (30 Min * 60 Sek * 1000 Ms = 1.800.000 ms)
+    let timeoutId;
 
-  if (loading) {
-    return (
-      <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
-        Prüfe Berechtigung...
-      </div>
-    );
+    const logoutUser = async () => {
+      await supabase.auth.signOut();
+      router.replace("/login?timeout=true");
+    };
+
+    const resetTimer = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(logoutUser, 30 * 60 * 1000);
+    };
+
+    // User-Aktivitäten, die den Timer zurücksetzen
+    const events = ["mousedown", "mousemove", "keypress", "scroll", "touchstart"];
+    events.forEach(event => {
+      window.addEventListener(event, resetTimer);
+    });
+
+    // Timer initial starten
+    resetTimer();
+
+    // Cleanup beim Verlassen der Seite
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      events.forEach(event => {
+        window.removeEventListener(event, resetTimer);
+      });
+    };
+  }, [router]);
+
+  if (!authorized) {
+    return null;
   }
 
-  // Wenn wir auf der Login-Seite sind, zeige NUR den Inhalt (ohne Logout-Button)
-  if (router.pathname === "/login") {
-    return <>{children}</>;
-  }
-
-  // Wenn wir eingeloggt sind (auf /aenderung etc.), render den Inhalt PLUS den Button
-  return (
-    <>
-      {children}
-      <LogoutButton />
-    </>
-  );
+  return children;
 }

@@ -5,37 +5,38 @@ export default function useFormPrefill(setFormData) {
   useEffect(() => {
     const fetchCompanyData = async () => {
       try {
-        // 1. Richtige Supabase-Methode, um den User zu holen
-        const { data: { user }, error: userError } = await supabase.auth.getUser();
+        // 1. Session mit JWT-Token abrufen
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
         
-        if (userError || !user) {
-          console.log("Kein User gefunden.");
+        if (sessionError || !session) {
+          console.log("Keine aktive Session gefunden.");
           return;
         }
 
-        const userEmail = user.email;
-        console.log("Eingeloggte E-Mail:", userEmail);
+        const token = session.access_token;
 
-        // 2. Daten abfragen
-        const { data: companyData, error: dbError } = await supabase
-          .from("USER") 
-          .select("employer, work_address, company_mail") 
-          .eq("user_email", userEmail)
-          .single(); 
+        // 2. Daten über die API-Route abfragen und JWT-Token mitschicken
+        const response = await fetch('/api/get-user-data', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        });
 
-        if (dbError) {
-          console.error("Fehler beim Laden (Checke RLS in Supabase!):", dbError.message);
+        const result = await response.json();
+
+        if (!response.ok) {
+          console.error("Fehler beim Laden der Firmendaten:", result.error);
           return;
         }
 
-        if (companyData) {
-          console.log("Daten erfolgreich geladen:", companyData);
-          
+        if (result.user) {
           setFormData((prev) => ({
             ...prev,
-            employer: companyData.employer || "",         
-            workAddress: companyData.work_address || "",
-            email: companyData.company_mail || "",      
+            employer: result.user.employer || "",        
+            workAddress: result.user.work_address || "",
+            email: result.user.company_mail || "",      
           }));
         }
       } catch (err) {

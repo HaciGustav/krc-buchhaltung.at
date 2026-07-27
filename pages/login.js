@@ -9,24 +9,23 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     setErrorMsg(null);
-
-    // 1. Supabase-Anfrage starten
-    // Supabase prüft das Passwort und speichert das JWT automatisch im Browser!
+    
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
 
     if (error) {
-      // Wenn E-Mail oder Passwort falsch ist
-      setErrorMsg("Anmeldung fehlgeschlagen: " + error.message);
+      setErrorMsg("Login fehlgeschlagen: " + error.message);
     } else {
-      // 2. ERFOLG! 
-      // Das JWT wurde im Hintergrund im LocalStorage abgelegt.
-      // Wir leiten den User jetzt direkt zum Buchhaltungsformular weiter.
-      router.push("/anmeldung"); 
+      // --- HIER IST DIE WEICHE ---
+      if (email === "office@krc-buchhaltung.at") {
+        router.push("/admin"); // Admin geht direkt ins Admin-Panel
+      } else {
+        router.push("/anmeldung"); // Normaler User geht zur Anmeldung
+      }
     }
   };
 
