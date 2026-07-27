@@ -86,13 +86,16 @@
         <AppBar
           sx={{
             height: drawerHeight,
-            backgroundColor: "#692046",
+            backgroundColor: "#5a1835",
           }}
         >
           {/* Mobile view layout for the top bar */}
           {screenMedium && (
             <div
               style={{
+                textDecoration: "none",
+                    backgroundColor: "#421126", //
+                    display: "grid",
                 height: "100%",
                 width: "100%",
                 display: "flex",
@@ -160,19 +163,26 @@
 
         {/* THE LEFT SIDEBAR MENU */}
         <Drawer
+          variant="persistent"
+          anchor="left"
+          open={open}
           sx={{
             width: drawerWidth,
             flexShrink: 0,
             zIndex: 0,
-            "& .MuiDrawer-paper": {
-              width: drawerWidth,
-              boxSizing: "border-box",
-              backgroundColor: "#fff", 
-            },
           }}
-          variant="persistent"
-          anchor="left"
-          open={open}
+          // Hier injizieren wir die Styles DIREKT in das innere Paper-Element
+          PaperProps={{
+            sx: {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+              // !important zwingt MUI, unsere Design-Regeln zu akzeptieren
+              backgroundColor: 'rgba(255, 255, 255, 0.98) !important', 
+              borderRight: 'none !important', // Entfernt die harte Linie rechts
+              boxShadow: '4px 0 24px rgba(0,0,0,0.12) !important', // Setzt den weichen Schatten
+              borderRadius: '0 24px 24px 0 !important', // Rundet die Ecken rechts ab
+            }
+          }}
         >
           <DrawerHeader />
           <div

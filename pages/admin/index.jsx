@@ -4,7 +4,8 @@ import { supabase } from "../../lib/supabaseClient";
 import ProtectedRoute from "../../components/ProtectedRoute";
 import { 
   Box, Typography, Container, Paper, TextField, 
-  Button, Tabs, Tab, Alert, CircularProgress 
+  Button, Tabs, Tab, Alert, CircularProgress,
+  Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
 } from "@mui/material";
 import { toast } from "react-toastify";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -17,6 +18,9 @@ export default function AdminPanel() {
 
   const [tabValue, setTabValue] = useState(0); // 0: Anlegen, 1: Bearbeiten, 2: Löschen
   const [loading, setLoading] = useState(false);
+
+  // Dialog State für die Sicherheitsabfrage
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   // Formular-Felder
   const [companyMail, setCompanyMail] = useState("");
@@ -36,9 +40,20 @@ export default function AdminPanel() {
     verifyAdmin();
   }, [router]);
 
-  const handleSubmit = async (e) => {
+  // Fängt den Formular-Submit ab und öffnet ggf. den Dialog
+  const handleFormSubmit = (e) => {
     e.preventDefault();
+    if (tabValue === 1 || tabValue === 2) {
+      setConfirmOpen(true); // Öffnet den Dialog bei Ändern/Löschen
+    } else {
+      executeAction(); // Führt Anlegen sofort aus
+    }
+  };
+
+  // Die eigentliche Funktion, die an das Backend sendet
+  const executeAction = async () => {
     setLoading(true);
+    setConfirmOpen(false); // Schließt den Dialog, falls er offen war
 
     const actionMap = ["create", "update", "delete"];
     const currentAction = actionMap[tabValue];
@@ -62,7 +77,7 @@ export default function AdminPanel() {
         toast.error(result.error || "Ein Fehler ist aufgetreten.");
       } else {
         toast.success(result.message || "Erfolgreich ausgeführt!");
-        if (currentAction === 'create') {
+        if (currentAction === 'create' || currentAction === 'delete') {
           setCompanyMail("");
           setPassword("");
           setEmployer("");
@@ -80,10 +95,20 @@ export default function AdminPanel() {
 
   return (
     <ProtectedRoute>
-      <Container maxWidth="md" sx={{ mt: 6, mb: 8 }}>
+      {/* Container: Kompakt und zentriert, damit nicht gescrollt werden muss */}
+      <Container 
+        maxWidth="md" 
+        sx={{ 
+          minHeight: 'calc(100vh - 100px)', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center',
+          py: 2
+        }}
+      >
         
         {/* Header & Stylischer Zur-Übersicht Button */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 3, flexWrap: 'wrap', gap: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2, flexWrap: 'wrap', gap: 2 }}>
           <div>
             <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', color: '#1a1a1a', display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <AdminPanelSettingsIcon sx={{ color: '#5a1835', fontSize: '36px' }} />
@@ -94,7 +119,6 @@ export default function AdminPanel() {
             </Typography>
           </div>
 
-          {/* Neuer, edler Button im Stil der oberen Leiste */}
           <Button 
             onClick={() => router.push('/admin/ubersicht')}
             sx={{ 
@@ -122,24 +146,24 @@ export default function AdminPanel() {
           </Button>
         </Box>
 
-        {/* Hauptkarte */}
+        {/* Hauptkarte (etwas weniger Padding, damit es kompakter wird) */}
         <Paper 
           elevation={3} 
           sx={{ 
-            p: 4, 
+            p: 3, 
             borderRadius: '16px', 
             borderTop: '6px solid #5a1835',
             boxShadow: '0 10px 30px rgba(0,0,0,0.06)'
           }}
         >
           
-          {/* Tabs (Anlegen / Bearbeiten / Löschen) im einheitlichen Design */}
+          {/* Tabs */}
           <Tabs 
             value={tabValue} 
             onChange={(e, newVal) => setTabValue(newVal)} 
             variant="fullWidth"
             sx={{ 
-              mb: 4, 
+              mb: 3, 
               borderBottom: '1px solid #eaeaea',
               '& .MuiTabs-indicator': { backgroundColor: '#5a1835', height: '3px' },
               '& .MuiTab-root': { fontWeight: 'bold', fontSize: '1rem', color: '#666' },
@@ -151,76 +175,91 @@ export default function AdminPanel() {
             <Tab label="LÖSCHEN" />
           </Tabs>
 
-          <form onSubmit={handleSubmit}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <form onSubmit={handleFormSubmit}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               
-              {/* E-Mail Feld */}
+              {/* IMMER SICHTBAR: Firmen E-Mail (Immer Pflichtfeld) */}
               <TextField
-                label="Firmen E-Mail (Primary Key)*"
-                type="email"
-                value={companyMail}
-                onChange={(e) => setCompanyMail(e.target.value)}
+                label="Firmen E-Mail *"
+                variant="outlined"
                 required
                 fullWidth
-                sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
+                value={companyMail}
+                onChange={(e) => setCompanyMail(e.target.value)}
+                sx={{
+                  "& .MuiInputBase-root": { fontSize: "1rem" }, 
+                  "& .MuiInputLabel-root": { fontSize: "1rem" } 
+                }}
               />
 
-              {/* Passwort Feld (Nur bei Anlegen oder Bearbeiten) */}
-              {tabValue !== 2 && (
-                <TextField
-                  label={tabValue === 0 ? "Initiales Passwort für den Kunden*" : "Neues Passwort (optional - leer lassen zum Beibehalten)"}
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required={tabValue === 0}
-                  fullWidth
-                  sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
-                />
-              )}
-
-              {/* Zusätzliche Felder (Nur bei Anlegen oder Bearbeiten) */}
+              {/* DIESE FELDER WERDEN BEIM LÖSCHEN (tabValue === 2) AUSGEBLENDET */}
               {tabValue !== 2 && (
                 <>
+                  {/* Passwort (Nur beim Anlegen Pflicht) */}
                   <TextField
-                    label="Arbeitgeber (Employer)*"
-                    value={employer}
-                    onChange={(e) => setEmployer(e.target.value)}
+                    label={tabValue === 0 ? "Initiales Passwort *" : "Neues Passwort (optional)"}
+                    variant="outlined"
+                    type="password"
                     required={tabValue === 0}
                     fullWidth
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    sx={{
+                      "& .MuiInputBase-root": { fontSize: "1rem" },
+                      "& .MuiInputLabel-root": { fontSize: "1rem" }
+                    }}
                   />
 
+                  {/* Arbeitgeber (Nur beim Anlegen Pflicht) */}
                   <TextField
-                    label="Arbeitsadresse (Work Address)*"
-                    value={workAddress}
-                    onChange={(e) => setWorkAddress(e.target.value)}
+                    label={tabValue === 0 ? "Arbeitgeber *" : "Arbeitgeber (optional)"}
+                    variant="outlined"
                     required={tabValue === 0}
                     fullWidth
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
+                    value={employer}
+                    onChange={(e) => setEmployer(e.target.value)}
+                    sx={{
+                      "& .MuiInputBase-root": { fontSize: "1rem" },
+                      "& .MuiInputLabel-root": { fontSize: "1rem" }
+                    }}
+                  />
+
+                  {/* Arbeitsadresse (Nur beim Anlegen Pflicht) */}
+                  <TextField
+                    label={tabValue === 0 ? "Arbeitsadresse *" : "Arbeitsadresse (optional)"}
+                    variant="outlined"
+                    required={tabValue === 0}
+                    fullWidth
+                    value={workAddress}
+                    onChange={(e) => setWorkAddress(e.target.value)}
+                    sx={{
+                      "& .MuiInputBase-root": { fontSize: "1rem" },
+                      "& .MuiInputLabel-root": { fontSize: "1rem" }
+                    }}
                   />
                 </>
               )}
 
               {/* Warnhinweis beim Löschen */}
               {tabValue === 2 && (
-                <Alert severity="warning" sx={{ borderRadius: '8px' }}>
-                  Achtung: Beim Löschen wird der Kunde sowohl aus der Authentifizierung (Login nicht mehr möglich) als auch komplett aus der Datenbank entfernt!
+                <Alert severity="warning" sx={{ borderRadius: '8px', mt: 1 }}>
+                  Achtung: Beim Löschen wird der Kunde komplett aus der Datenbank entfernt!
                 </Alert>
               )}
 
-              {/* Dynamischer Aktions-Button in einheitlicher Farbgebung */}
+              {/* Dynamischer Aktions-Button */}
               <Button 
                 type="submit" 
                 variant="contained" 
                 size="large"
                 disabled={loading}
                 sx={{ 
-                  mt: 2, 
-                  py: 1.6, 
+                  mt: 1, 
+                  py: 1.4, 
                   fontWeight: 'bold', 
                   fontSize: '1rem',
                   borderRadius: '8px',
-                  bgcolor: tabValue === 2 ? '#d32f2f' : '#5a1835', // Rot nur ganz dezent beim Löschen, sonst eleganter KRC-Ton
+                  bgcolor: tabValue === 2 ? '#d32f2f' : '#5a1835', 
                   '&:hover': { 
                     bgcolor: tabValue === 2 ? '#b71c1c' : '#421126' 
                   } 
@@ -242,6 +281,44 @@ export default function AdminPanel() {
 
         </Paper>
       </Container>
+
+      {/* --- DER SICHERHEITS-DIALOG --- */}
+      <Dialog
+        open={confirmOpen}
+        onClose={() => setConfirmOpen(false)}
+        PaperProps={{
+          sx: { borderRadius: '12px', p: 1 }
+        }}
+      >
+        <DialogTitle sx={{ fontWeight: 'bold' }}>
+          {tabValue === 1 ? "Kunden bearbeiten?" : "Kunden wirklich löschen?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {tabValue === 1 
+              ? `Bist du dir sicher, dass du die Daten für die E-Mail "${companyMail}" aktualisieren möchtest?`
+              : `Bist du dir sicher? Der Kunde "${companyMail}" wird dauerhaft gelöscht und kann sich nicht mehr anmelden. Das kann nicht rückgängig gemacht werden.`
+            }
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 2 }}>
+          <Button onClick={() => setConfirmOpen(false)} sx={{ color: '#666' }}>
+            Abbrechen
+          </Button>
+          <Button 
+            onClick={executeAction} 
+            variant="contained" 
+            sx={{ 
+              bgcolor: tabValue === 2 ? '#d32f2f' : '#5a1835',
+              '&:hover': { bgcolor: tabValue === 2 ? '#b71c1c' : '#421126' }
+            }}
+          >
+            Ja, sicher
+          </Button>
+        </DialogActions>
+      </Dialog>
+      {/* ----------------------------- */}
+
     </ProtectedRoute>
   );
 }

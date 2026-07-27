@@ -22,3 +22,8 @@ a {
   /* max-width: 800px; */
   margin: 0 auto;
 }
+
+html {
+  /* Standard ist 100%. 115% macht alles um den Faktor 1.15 größer */
+  font-size: 115%; 
+}
