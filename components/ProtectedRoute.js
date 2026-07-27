@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "../lib/supabaseClient";
-import LogoutButton from "../components/LogoutButton";
+import LogoutButton from "./LogoutButton";
 
 export default function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
