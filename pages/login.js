@@ -1,71 +1,95 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { supabase } from "../lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
+import { Container, Paper, Typography, TextField, Button, Box } from "@mui/material";
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState(null);
-  const router = useRouter();
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault(); 
-    setErrorMsg(null);
+    e.preventDefault();
+    setError("");
 
-    // 1. Supabase-Anfrage starten
-    // Supabase prüft das Passwort und speichert das JWT automatisch im Browser!
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
     });
 
-    if (error) {
-      // Wenn E-Mail oder Passwort falsch ist
-      setErrorMsg("Anmeldung fehlgeschlagen: " + error.message);
+    if (authError) {
+      setError(authError.message);
     } else {
-      // 2. ERFOLG! 
-      // Das JWT wurde im Hintergrund im LocalStorage abgelegt.
-      // Wir leiten den User jetzt direkt zum Buchhaltungsformular weiter.
-      router.push("/anmeldung"); 
+      // Leite je nach Rolle oder zur Admin-/Anmeldeseite weiter
+      if (email.toLowerCase() === "office@krc-buchhaltung.at") {
+        router.push("/admin");
+      } else {
+        router.push("/anmeldung");
+      }
     }
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", fontFamily: "sans-serif" }}>
-      <h2>KRC Buchhaltung - Login</h2>
-      
-      {errorMsg && <div style={{ color: "red", marginBottom: "15px" }}>{errorMsg}</div>}
+    <Container maxWidth="sm" sx={{ mt: 8 }}>
+      <Paper elevation={3} sx={{ p: 4, borderRadius: "16px", borderTop: "6px solid #5a1835" }}>
+        
+        <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: "bold", mb: 3 }}>
+          KRC Buchhaltung - Login
+        </Typography>
 
-      <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: "15px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>E-Mail-Adresse</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+        {error && (
+          <Typography color="error" sx={{ mb: 2, fontSize: "0.9rem" }}>
+            {error}
+          </Typography>
+        )}
 
-        <div style={{ marginBottom: "20px" }}>
-          <label style={{ display: "block", marginBottom: "5px" }}>Passwort</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+        <form onSubmit={handleLogin}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+            
+            <TextField
+              label="E-Mail-Adresse"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              fullWidth
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "8px" } }}
+            />
 
-        <button 
-          type="submit" 
-          style={{ width: "100%", padding: "10px", backgroundColor: "#e10000", color: "white", border: "none", cursor: "pointer" }}
-        >
-          Anmelden
-        </button>
-      </form>
-    </div>
+            <TextField
+              label="Passwort"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              fullWidth
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "8px" } }}
+            />
+
+            <Button 
+              type="submit" 
+              variant="contained" 
+              size="large"
+              sx={{ 
+                mt: 1, 
+                py: 1.5, 
+                fontWeight: "bold", 
+                bgcolor: "#5a1835", 
+                borderRadius: "8px",
+                textTransform: "none",
+                "&:hover": { 
+                  bgcolor: "#421126" 
+                } 
+              }}
+            >
+              Anmelden
+            </Button>
+
+          </Box>
+        </form>
+
+      </Paper>
+    </Container>
   );
 }
