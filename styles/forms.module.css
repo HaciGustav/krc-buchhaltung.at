@@ -1,41 +1,49 @@
 .flex {
   display: flex;
-  column-gap: 8px;
+  column-gap: 12px;
   width: 100%;
 }
 
 .flex_column {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: 1.1rem;
   width: 100%;
 }
 
 .container {
   padding-inline: 2rem;
-  padding-block: 1rem;
+  padding-block: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .form_section {
-  padding: 10px;
-  border: 1px solid #a0a0a053;
-  border-radius: 5px;
+  padding: 24px;
+  background-color: #fff;
+  border: none;
+  border-top: 3px solid #d9b877;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
+  row-gap: 1.1rem;
   width: 100%;
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 12px rgba(90, 24, 53, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .form_section:hover {
-  box-shadow: rgba(50, 50, 93, 0.152) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.158) 0px 3px 7px -3px;
+  box-shadow: 0 8px 24px rgba(90, 24, 53, 0.1);
+  transform: translateY(-2px);
 }
 
 .section_title {
-  font-size: 1.3rem;
-  font-style: italic;
-  padding-bottom: 8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: normal;
+  color: #421126;
+  padding-bottom: 4px;
 }
 
 .dateinput {
@@ -53,13 +61,95 @@
   color: black !important;
 }
 
+/* ============================= */
+/* GLOBALE MUI-INPUT-ÜBERSCHREIBUNG */
+/* wirkt automatisch auf ALLE TextFields, Selects, DateInputs */
+/* in jedem Formular, das .container nutzt                    */
+/* ============================= */
+
+.container :global(.MuiOutlinedInput-root) {
+  background-color: #faf8f6;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.container :global(.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline) {
+  border-color: #e6ded6;
+  transition: border-color 0.2s ease;
+}
+
+.container :global(.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline) {
+  border-color: #d9b877;
+}
+
+.container :global(.MuiOutlinedInput-root.Mui-focused) {
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(90, 24, 53, 0.08);
+}
+
+.container :global(.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline) {
+  border-color: #5a1835;
+  border-width: 1.5px;
+}
+
+.container :global(.MuiInputLabel-root) {
+  color: #9c8f83;
+}
+
+.container :global(.MuiInputLabel-root.Mui-focused) {
+  color: #5a1835;
+}
+
+.container :global(.MuiFormLabel-root.Mui-focused) {
+  color: #5a1835 !important;
+}
+
+.container :global(.MuiCheckbox-root) {
+  color: #c9bcb0;
+}
+
+.container :global(.MuiCheckbox-root.Mui-checked) {
+  color: #5a1835;
+}
+
+.container :global(.MuiButton-containedPrimary) {
+  background-color: #5a1835;
+  border-radius: 8px;
+  padding: 10px 32px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 14px rgba(90, 24, 53, 0.25);
+  transition: all 0.2s ease;
+}
+
+.container :global(.MuiButton-containedPrimary:hover) {
+  background-color: #421126;
+  box-shadow: 0 6px 18px rgba(90, 24, 53, 0.35);
+  transform: translateY(-1px);
+}
+
+.container :global(.MuiButton-containedPrimary.Mui-disabled) {
+  background-color: #d9cfc7;
+}
+
+/* Page-Titel (Typography h4 "Anmeldeformular" etc.) */
+.container :global(.MuiTypography-h4) {
+  font-family: 'Playfair Display', serif;
+  color: #421126;
+  font-weight: 600;
+}
+
 @media (max-width: 500px) {
+  .container {
+    padding-inline: 1.2rem;
+  }
   .flex_column {
     row-gap: 10px;
   }
   .flex {
     flex-wrap: wrap;
-    row-gap: 10px;
+    row-gap: 12px;
   }
   .placeholder_div {
     display: none;

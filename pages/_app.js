@@ -74,8 +74,31 @@ export default function App({ Component, pageProps }) {
     },
   });
 
-  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
-
+  const theme = useMemo(() => {
+    const baseTheme = getDesignTokens(mode);
+    return createTheme({
+      ...baseTheme,
+      components: {
+        ...(baseTheme.components || {}),
+        MuiMenu: {
+          defaultProps: {
+            disableScrollLock: true,
+          },
+        },
+        MuiPopover: {
+          defaultProps: {
+            disableScrollLock: true,
+          },
+        },
+        MuiModal: {
+          defaultProps: {
+            disableScrollLock: true,
+          },
+        },
+      },
+    });
+  }, [mode]);
+  
   useEffect(() => {
     const x = localStorage.getItem("theme");
     setMode(x ? x : "light");

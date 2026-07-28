@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --color-bordeaux: #5a1835;
+  --color-bordeaux-dark: #421126;
+  --color-bordeaux-darker: #2a0c16;
+  --color-gold: #d9b877;
+  --color-cream: #faf7f5;
+  --color-text: #1a1a1a;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,22 +19,29 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-a {
-  text-decoration: none;
-  /* color: #fff; */
+  font-family: 'Inter', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-cream);
 }
 
-.scroll-opacity-content {
-  transition: opacity 0.5s ease-in-out;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* max-width: 800px; */
-  margin: 0 auto;
+a {
+  text-decoration: none;
 }
 
 html {
-  /* Standard ist 100%. 115% macht alles um den Faktor 1.15 größer */
-  font-size: 115%; 
+  /* bleibt wie gehabt, damit nichts im Rest der Seite verrutscht */
+  font-size: 115%;
+}
+
+.MuiMenuItem-root.Mui-selected {
+  background-color: rgba(217, 184, 119, 0.15) !important;
+}
+
+.MuiMenuItem-root:hover {
+  background-color: rgba(90, 24, 53, 0.06) !important;
+}
+
+.MuiPaper-root.MuiMenu-paper {
+  border-radius: 10px !important;
+  box-shadow: 0 8px 24px rgba(90, 24, 53, 0.15) !important;
 }

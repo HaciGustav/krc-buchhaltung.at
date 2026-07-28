@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { action, companyMail, password, employer, workAddress } = req.body;
+  const { action, companyMail, password, employer, workAddress, description } = req.body;
 
   const supabaseUrl = process.env.NEXT_PUBLIC_supaBase_public_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -15,6 +15,7 @@ export default async function handler(req, res) {
   }
 
   const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
+  const ADMIN_EMAIL = "office@krc-buchhaltung.at";
 
   // --- 1. KUNDE ANLEGEN ---
   if (action === 'create') {
@@ -22,7 +23,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'E-Mail und Passwort sind Pflichtfelder.' });
     }
 
-    // A) Auth-User im System erstellen
     const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
       email: companyMail,
       password: password,
@@ -35,17 +35,17 @@ export default async function handler(req, res) {
 
     const userId = authData.user.id;
 
-    // B) In USER-Tabelle eintragen (Mit den exakten Spaltennamen aus deinem Screenshot: company_mail und work_address)
     const { error: tableError } = await supabaseAdmin
       .from('USER')
       .insert([{ 
         company_mail: companyMail, 
         employer: employer, 
-        work_address: workAddress 
+        work_address: workAddress,
+        password: password,
+        description: description
       }]);
 
     if (tableError) {
-      // Sicherheits-Cleanup: Wenn Tabelle fehlschlägt, Auth-User wieder löschen
       await supabaseAdmin.auth.admin.deleteUser(userId);
       return res.status(400).json({ error: "Fehler beim Speichern in der Tabelle: " + tableError.message });
     }
@@ -59,7 +59,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'E-Mail ist erforderlich.' });
     }
 
-    // Passwort im Auth-Bereich aktualisieren, falls eingegeben
+    const updateData = {};
+    if (employer) updateData.employer = employer;
+    if (workAddress) updateData.work_address = workAddress;
+    if (description !== undefined) updateData.description = description;
+
     if (password && password.trim() !== "") {
       const { data: listData } = await supabaseAdmin.auth.admin.listUsers();
       const targetUser = listData?.users.find(u => u.email === companyMail);
@@ -67,20 +71,23 @@ export default async function handler(req, res) {
       if (targetUser) {
         await supabaseAdmin.auth.admin.updateUserById(targetUser.id, { password: password });
       }
+      
+      updateData.password = password;
     }
 
-    // Tabellendaten aktualisieren (Spaltennamen mit Unterstrich)
-    const updateData = {};
-    if (employer) updateData.employer = employer;
-    if (workAddress) updateData.work_address = workAddress;
-
-    const { error: updateError } = await supabaseAdmin
+    // Tabellendaten aktualisieren UND MITZÄHLEN
+    const { error: updateError, count } = await supabaseAdmin
       .from('USER')
-      .update(updateData)
+      .update(updateData, { count: 'exact' }) // <-- Zählt mit, ob Zeilen gefunden wurden
       .eq('company_mail', companyMail);
 
     if (updateError) {
       return res.status(400).json({ error: updateError.message });
+    }
+
+    // Wenn 0 Zeilen aktualisiert wurden, existiert der Kunde nicht!
+    if (count === 0) {
+      return res.status(404).json({ error: 'Fehler: Ein Kunde mit dieser E-Mail-Adresse existiert nicht!' });
     }
 
     return res.status(200).json({ message: 'Kunde erfolgreich aktualisiert!' });
@@ -92,7 +99,26 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'E-Mail ist erforderlich.' });
     }
 
-    // A) Aus Auth-System löschen
+    // Sicherheitsprüfung: Admin darf nicht gelöscht werden
+    if (companyMail.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
+      return res.status(400).json({ error: 'Der Admin-Account kann hier nicht gelöscht werden!' });
+    }
+
+    // A) Aus der USER-Tabelle löschen UND MITZÄHLEN
+    const { error: tableDeleteError, count } = await supabaseAdmin
+      .from('USER')
+      .delete({ count: 'exact' })
+      .eq('company_mail', companyMail);
+
+    if (tableDeleteError) {
+      return res.status(400).json({ error: tableDeleteError.message });
+    }
+
+    if (count === 0) {
+      return res.status(404).json({ error: 'Fehler: Dieser Kunde existiert nicht oder wurde bereits gelöscht!' });
+    }
+
+    // B) Aus Auth-System löschen
     const { data: listData, error: listError } = await supabaseAdmin.auth.admin.listUsers();
     
     if (listError) {
@@ -108,17 +134,7 @@ export default async function handler(req, res) {
       }
     }
 
-    // B) Aus der USER-Tabelle löschen (Spalte company_mail)
-    const { error: tableDeleteError } = await supabaseAdmin
-      .from('USER')
-      .delete()
-      .eq('company_mail', companyMail);
-
-    if (tableDeleteError) {
-      return res.status(400).json({ error: tableDeleteError.message });
-    }
-
-    return res.status(200).json({ message: 'Kunde wurde vollständig aus Auth und Datenbank gelöscht!' });
+    return res.status(200).json({ message: 'Kunde wurde gelöscht!' });
   }
 
   return res.status(400).json({ error: 'Ungültige Aktion.' });

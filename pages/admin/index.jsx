@@ -27,6 +27,7 @@ export default function AdminPanel() {
   const [password, setPassword] = useState("");
   const [employer, setEmployer] = useState("");
   const [workAddress, setWorkAddress] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     const verifyAdmin = async () => {
@@ -39,6 +40,16 @@ export default function AdminPanel() {
     };
     verifyAdmin();
   }, [router]);
+
+  // --- NEU: Felder komplett leeren, wenn der Tab gewechselt wird ---
+  const handleTabChange = (event, newVal) => {
+    setTabValue(newVal);
+    setCompanyMail("");
+    setPassword("");
+    setEmployer("");
+    setWorkAddress("");
+    setDescription("");
+  };
 
   // Fängt den Formular-Submit ab und öffnet ggf. den Dialog
   const handleFormSubmit = (e) => {
@@ -67,7 +78,8 @@ export default function AdminPanel() {
           companyMail,
           password,
           employer,
-          workAddress
+          workAddress,
+          description
         }),
       });
 
@@ -77,12 +89,12 @@ export default function AdminPanel() {
         toast.error(result.error || "Ein Fehler ist aufgetreten.");
       } else {
         toast.success(result.message || "Erfolgreich ausgeführt!");
-        if (currentAction === 'create' || currentAction === 'delete') {
-          setCompanyMail("");
-          setPassword("");
-          setEmployer("");
-          setWorkAddress("");
-        }
+        // Nach erfolgreicher Aktion alles leeren
+        setCompanyMail("");
+        setPassword("");
+        setEmployer("");
+        setWorkAddress("");
+        setDescription("");
       }
     } catch (err) {
       toast.error("Netzwerkfehler: " + err.message);
@@ -146,7 +158,7 @@ export default function AdminPanel() {
           </Button>
         </Box>
 
-        {/* Hauptkarte (etwas weniger Padding, damit es kompakter wird) */}
+        {/* Hauptkarte */}
         <Paper 
           elevation={3} 
           sx={{ 
@@ -157,10 +169,10 @@ export default function AdminPanel() {
           }}
         >
           
-          {/* Tabs */}
+          {/* Tabs mit dem neuen Handler, der beim Wechsel alles leert */}
           <Tabs 
             value={tabValue} 
-            onChange={(e, newVal) => setTabValue(newVal)} 
+            onChange={handleTabChange} 
             variant="fullWidth"
             sx={{ 
               mb: 3, 
@@ -178,9 +190,9 @@ export default function AdminPanel() {
           <form onSubmit={handleFormSubmit}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               
-              {/* IMMER SICHTBAR: Firmen E-Mail (Immer Pflichtfeld) */}
+              {/* IMMER SICHTBAR: Firmen E-Mail */}
               <TextField
-                label="Firmen E-Mail *"
+                label="Firmen E-Mail "
                 variant="outlined"
                 required
                 fullWidth
@@ -195,9 +207,9 @@ export default function AdminPanel() {
               {/* DIESE FELDER WERDEN BEIM LÖSCHEN (tabValue === 2) AUSGEBLENDET */}
               {tabValue !== 2 && (
                 <>
-                  {/* Passwort (Nur beim Anlegen Pflicht) */}
+                  {/* Passwort */}
                   <TextField
-                    label={tabValue === 0 ? "Initiales Passwort *" : "Neues Passwort (optional)"}
+                    label={tabValue === 0 ? "Initiales Passwort " : "Neues Passwort (optional)"}
                     variant="outlined"
                     type="password"
                     required={tabValue === 0}
@@ -210,9 +222,9 @@ export default function AdminPanel() {
                     }}
                   />
 
-                  {/* Arbeitgeber (Nur beim Anlegen Pflicht) */}
+                  {/* Arbeitgeber */}
                   <TextField
-                    label={tabValue === 0 ? "Arbeitgeber *" : "Arbeitgeber (optional)"}
+                    label={tabValue === 0 ? "Arbeitgeber " : "Arbeitgeber (optional)"}
                     variant="outlined"
                     required={tabValue === 0}
                     fullWidth
@@ -224,14 +236,28 @@ export default function AdminPanel() {
                     }}
                   />
 
-                  {/* Arbeitsadresse (Nur beim Anlegen Pflicht) */}
+                  {/* Arbeitsadresse */}
                   <TextField
-                    label={tabValue === 0 ? "Arbeitsadresse *" : "Arbeitsadresse (optional)"}
+                    label={tabValue === 0 ? "Arbeitsadresse " : "Arbeitsadresse (optional)"}
                     variant="outlined"
                     required={tabValue === 0}
                     fullWidth
                     value={workAddress}
                     onChange={(e) => setWorkAddress(e.target.value)}
+                    sx={{
+                      "& .MuiInputBase-root": { fontSize: "1rem" },
+                      "& .MuiInputLabel-root": { fontSize: "1rem" }
+                    }}
+                  />
+
+                  {/* Beschreibung */}
+                  <TextField
+                    label="Beschreibung (optional)"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     sx={{
                       "& .MuiInputBase-root": { fontSize: "1rem" },
                       "& .MuiInputLabel-root": { fontSize: "1rem" }
@@ -317,8 +343,6 @@ export default function AdminPanel() {
           </Button>
         </DialogActions>
       </Dialog>
-      {/* ----------------------------- */}
-
     </ProtectedRoute>
   );
 }
