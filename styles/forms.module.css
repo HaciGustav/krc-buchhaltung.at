@@ -1,32 +1,32 @@
 .flex {
   display: flex;
-  column-gap: 12px;
+  column-gap: 20px;
   width: 100%;
 }
 
 .flex_column {
   display: flex;
   flex-direction: column;
-  row-gap: 1.1rem;
+  row-gap: 1.4rem;
   width: 100%;
 }
 
 .container {
   padding-inline: 2rem;
   padding-block: 1.5rem;
-  max-width: 900px;
+  max-width: 1250px;
   margin: 0 auto;
 }
 
 .form_section {
-  padding: 24px;
+  padding: 36px;
   background-color: #fff;
   border: none;
   border-top: 3px solid #d9b877;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  row-gap: 1.1rem;
+  row-gap: 1.4rem;
   width: 100%;
   box-shadow: 0 2px 12px rgba(90, 24, 53, 0.06);
   transition: box-shadow 0.25s ease, transform 0.25s ease;

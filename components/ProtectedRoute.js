@@ -18,7 +18,7 @@ export default function ProtectedRoute({ children }) {
     };
     checkAuth();
 
-    // 2. 30 Minuten Inaktivitäts-Timer (30 Min * 60 Sek * 1000 Ms = 1.800.000 ms)
+    // 2. 10 Minuten Inaktivitäts-Timer (10 Min * 60 Sek * 1000 Ms = 600.000 ms)
     let timeoutId;
 
     const logoutUser = async () => {
@@ -28,7 +28,7 @@ export default function ProtectedRoute({ children }) {
 
     const resetTimer = () => {
       if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(logoutUser, 30 * 60 * 1000);
+      timeoutId = setTimeout(logoutUser, 10 * 60 * 1000);
     };
 
     // User-Aktivitäten, die den Timer zurücksetzen

@@ -29,7 +29,7 @@ const Header = () => {
           </div>
 
           <Link href="/anmeldung" className={styles.cta_button}>
-            {t('header.cta', 'Formular starten')}
+            {t('header.startForm')}
           </Link>
 
           <svg

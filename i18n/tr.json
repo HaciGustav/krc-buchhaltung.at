@@ -2,10 +2,13 @@
   "header": {
     "address": "Oberlaaer Straße 191/4, 1100 Viyana - Tel:",
     "kanzlei": "Buchhaltungskanzlei KG",
-    "title": "Profesyonel Muhasebe",
-    "slogan1": "Zamanında",
+    "title": "Uzman Muhasebe Hizmetleri",
+    "slogan1": "Zamanında", 
     "slogan2": "Güvenilir",
-    "slogan3": "Verimli"
+    "slogan3": "Verimli",
+    "startForm": "FORMULARI BAŞLAT",
+    "loggedInAs": "Giriş yapan:",
+    "logout": "Çıkış Yap"
   },
   "alert": {
     "short": "8 Agustos 2026 - 24 Agustos 2026 tarihleri arasında büromuz yıllık izin dolayısıyla kapalı olacaktır.",

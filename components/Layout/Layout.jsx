@@ -186,7 +186,7 @@ const Layout = ({ children }) => {
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               {showAuthInfo && (
                 <Typography sx={{ color: "#fff", fontSize: "0.85rem", opacity: 0.9 }}>
-                  Angemeldet als: <strong style={{ color: "#d9b877", fontWeight: 600 }}>{userEmail}</strong>
+                  {t("header.loggedInAs")} <strong style={{ color: "#d9b877", fontWeight: 600 }}>{userEmail}</strong>
                 </Typography>
               )}
               <LangSwitch />
@@ -275,7 +275,7 @@ const Layout = ({ children }) => {
             }}
           >
             <LogoutIcon sx={{ mr: 1 }} />
-            Abmelden
+            {t("header.logout")}
           </Fab>
         )}
         {/* ------------------------------------------------------------------------------------------ */}

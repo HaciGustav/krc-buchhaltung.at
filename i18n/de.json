@@ -6,7 +6,10 @@
     "title": "Professionelle Buchhaltung",
     "slogan1": "Pünktlich",
     "slogan2": "Verlässlich",
-    "slogan3": "Effizient"
+    "slogan3": "Effizient",
+    "startForm": "FORMULAR STARTEN",
+    "loggedInAs": "Angemeldet als:",
+    "logout": "Abmelden"
   },
   "alert": {
     "short": "Betriebsurlaub: vom 08. August 2026 bis zum 24. August 2026 befindet sich unsere Kanzlei im Betriebsurlaub.",

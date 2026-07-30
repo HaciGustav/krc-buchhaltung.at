@@ -19,7 +19,7 @@ import useFormUtilities from "@/hooks/useFormUtilities";
 import SectionTitle from "../form-components/SectionTitle";
 import { useTranslation } from "react-i18next";
 import useFormPrefill from "@/hooks/useFormPrefill";
-  
+
 const requiredFields = [
   { fieldName: "employer", fieldCaption: "forms.employer" },
   { fieldName: "workAddress", fieldCaption: "forms.workAddress" },
@@ -44,12 +44,11 @@ const NewRegistry = () => {
   const [formData, setFormData] = useState({ minWage: true });
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
-   //preFill
-    useFormPrefill(setFormData);
+  // Auto-Prefill für die Kundendaten
+  useFormPrefill(setFormData);
 
   const {
     warningModalProps,
-    setWarningModalProps,
     handleCloseModal,
     validateForm,
     screenSmall,
@@ -69,6 +68,7 @@ const NewRegistry = () => {
     } else if (type === "file") {
       inputValue = event.target.files[0];
     }
+
     const additionalInfo = {};
     if (name === "salaryForm" && value === "kv") {
       additionalInfo.salary = "";
@@ -86,17 +86,18 @@ const NewRegistry = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const localizedRequiredFields = requiredFields.map(f => ({
+    const localizedRequiredFields = requiredFields.map((f) => ({
       ...f,
-      fieldCaption: t(f.fieldCaption)
+      fieldCaption: t(f.fieldCaption),
     }));
-    
+
     const isValidationOk = validateForm(localizedRequiredFields, formData);
     if (isValidationOk) {
       setSubmitButtonDisabled(true);
       sendAnmeldung(formData).then(() => setSubmitButtonDisabled(false));
     }
   };
+
   const isManualInputSelected = formData?.salaryForm === "manualInput";
 
   return (
@@ -108,8 +109,10 @@ const NewRegistry = () => {
       <form className={css.container} onSubmit={handleSubmit}>
         <Typography variant="h4" sx={{ fontSize: pageHeaderSize }} gutterBottom>
           {t("forms.registration")}
-        </Typography>{" "}
+        </Typography>
+
         <div className={css.flex_column}>
+          {/* --- FIRMENDATEN / DIENSTGEBER (READONLY) --- */}
           <div className={css.form_section}>
             <SectionTitle title={t("forms.companyData")} />
             <div className={css.flex}>
@@ -120,6 +123,7 @@ const NewRegistry = () => {
                 fullWidth
                 value={formData.employer || ""}
                 onChange={handleChange}
+                InputProps={{ readOnly: true }} // <-- Fest schreibgeschützt
               />
               <TextField
                 name="workAddress"
@@ -128,23 +132,12 @@ const NewRegistry = () => {
                 fullWidth
                 value={formData.workAddress || ""}
                 onChange={handleChange}
+                InputProps={{ readOnly: true }} // <-- Fest schreibgeschützt
               />
             </div>
-
-            
-            {/* <div className={css.flex}>
-              <TextField
-                name="email"
-                size={textfieldSize}
-                label={t("forms.email")}
-                inputProps={{ type: "email" }}
-                fullWidth
-                value={formData.email || ""}
-                onChange={handleChange}
-              />
-              <div className={css.placeholder_div} />
-            </div> */}
           </div>
+
+          {/* --- DIENSTNEHMER DATEN --- */}
           <div className={css.form_section}>
             <SectionTitle title={t("forms.employeeData")} />
             <div className={css.flex}>
@@ -165,6 +158,7 @@ const NewRegistry = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div className={css.flex}>
               <TextField
                 name="insuranceNumberDN"
@@ -182,15 +176,16 @@ const NewRegistry = () => {
                 name="dob"
               />
             </div>
+
             <div className={css.flex}>
               <FormControl sx={{ minWidth: 120, width: "calc(100% - 5px)" }}>
-                <InputLabel size={textfieldSize} id="group">
+                <InputLabel size={textfieldSize} id="marital-status-label">
                   {t("forms.maritalStatus")}
                 </InputLabel>
                 <Select
                   sx={{ width: "100%" }}
-                  labelId="group"
-                  id="demo-select-small"
+                  labelId="marital-status-label"
+                  id="marital-status-select"
                   size={textfieldSize}
                   name="maritalStatus"
                   value={formData?.maritalStatus || ""}
@@ -203,16 +198,23 @@ const NewRegistry = () => {
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Ledig"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.maritalSingle")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.maritalSingle")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Verheiratet"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.maritalMarried")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.maritalMarried")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Sonstiges"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.maritalOther")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.maritalOther")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
+
               <FormControl sx={{ minWidth: 120, width: "calc(100% - 5px)" }}>
                 <InputLabel size={textfieldSize} id="gender-group">
                   {t("forms.gender")}
@@ -233,17 +235,24 @@ const NewRegistry = () => {
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Weiblich"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.genderFemale")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.genderFemale")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Männlich"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.genderMale")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.genderMale")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Andere"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.genderOther")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.genderOther")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
             </div>
+
             <div className={css.flex}>
               <TextField
                 name="address"
@@ -254,6 +263,7 @@ const NewRegistry = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div className={css.flex}>
               <TextField
                 name="zip"
@@ -272,6 +282,7 @@ const NewRegistry = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div className={css.flex}>
               <TextField
                 name="citizenship"
@@ -310,6 +321,7 @@ const NewRegistry = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div className={css.flex}>
               <TextField
                 name="workingHours"
@@ -321,13 +333,13 @@ const NewRegistry = () => {
               />
 
               <FormControl sx={{ minWidth: 120, width: "calc(100% - 5px)" }}>
-                <InputLabel size={textfieldSize} id="group">
+                <InputLabel size={textfieldSize} id="group-select-label">
                   {t("forms.group")}
                 </InputLabel>
                 <Select
                   sx={{ width: "100%" }}
-                  labelId="group"
-                  id="demo-select-small"
+                  labelId="group-select-label"
+                  id="group-select"
                   size={textfieldSize}
                   name="gruppe"
                   value={formData?.gruppe || ""}
@@ -340,27 +352,34 @@ const NewRegistry = () => {
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Angestellte/r"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.employee")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.employee")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Arbeiter/in"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.worker")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.worker")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Lehrling"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.apprentice")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.apprentice")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
             </div>
+
             <div className={css.flex}>
               <FormControl sx={{ minWidth: 120, width: "calc(100% - 5px)" }}>
-                <InputLabel size={textfieldSize} id="insuranceType">
+                <InputLabel size={textfieldSize} id="insuranceType-label">
                   {t("forms.insuranceType")}
                 </InputLabel>
                 <Select
                   sx={{ width: "100%" }}
                   size={textfieldSize}
-                  labelId="insuranceType"
-                  id="demo-select-small"
+                  labelId="insuranceType-label"
+                  id="insuranceType-select"
                   name="insuranceType"
                   value={formData?.insuranceType || ""}
                   label={t("forms.insuranceType")}
@@ -372,15 +391,20 @@ const NewRegistry = () => {
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Vollversichert"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.fullyInsured")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.fullyInsured")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Geringfügig"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.marginallyEmployed")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.marginallyEmployed")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
               <div className={css.placeholder_div} />
             </div>
+
             <div className={css.flex}>
               <FormControl sx={{ minWidth: 120, width: "calc(100% - 5px)" }}>
                 <InputLabel size={textfieldSize} id="gehalt-select-label">
@@ -390,7 +414,7 @@ const NewRegistry = () => {
                   sx={{ width: "100%" }}
                   size={textfieldSize}
                   labelId="gehalt-select-label"
-                  id="gehalt-select-small"
+                  id="gehalt-select"
                   name="salaryForm"
                   value={formData?.salaryForm || (formData?.minWage && "kv")}
                   label={t("forms.salary")}
@@ -398,13 +422,18 @@ const NewRegistry = () => {
                   fullWidth
                 >
                   <MenuItem value={"kv"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.minWage")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.minWage")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"manualInput"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.manualInput")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.manualInput")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
+
               {isManualInputSelected ? (
                 <TextField
                   name="salary"
@@ -418,6 +447,7 @@ const NewRegistry = () => {
                 <div className={css.flex} />
               )}
             </div>
+
             <div className={css.flex}>
               <TextField
                 name="note"
@@ -430,6 +460,7 @@ const NewRegistry = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div
               className={css.flex}
               style={{
@@ -479,6 +510,7 @@ const NewRegistry = () => {
               />
             </div>
           </div>
+
           <Button
             disabled={submitButtonDisabled}
             type="submit"
