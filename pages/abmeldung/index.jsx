@@ -52,15 +52,14 @@ const Abmeldung = () => {
     setWarningModalProps,
   } = useFormUtilities();
 
-   //preFill
-    useFormPrefill(setFormData);
-    
+  //preFill
+  useFormPrefill(setFormData);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const localizedRequiredFields = requiredFields.map(f => ({
+    const localizedRequiredFields = requiredFields.map((f) => ({
       ...f,
-      fieldCaption: t(f.fieldCaption)
+      fieldCaption: t(f.fieldCaption),
     }));
 
     const isValidationOk = validateForm(localizedRequiredFields, formData);
@@ -114,7 +113,7 @@ const Abmeldung = () => {
                 onChange={handleChange}
               />
             </div>
-           {/*  <div className={css.flex}>
+            <div className={css.flex}>
               <TextField
                 size={textfieldSize}
                 name="email"
@@ -124,7 +123,8 @@ const Abmeldung = () => {
                 value={formData.email || ""}
                 onChange={handleChange}
               />
-            </div> */}
+            </div>{" "}
+            <div className={css.placeholder_div} />
           </div>
           <div className={css.form_section}>
             <SectionTitle title={t("forms.employeeData")} />
@@ -188,7 +188,9 @@ const Abmeldung = () => {
                   label={t("forms.remainingHolidays")}
                 >
                   <MenuItem value={"Nein"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.no")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.no")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Ja"}>
                     <Typography sx={{ fontSize: typographyFontSize }}>

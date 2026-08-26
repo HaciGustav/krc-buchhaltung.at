@@ -19,7 +19,7 @@ import useFormUtilities from "@/hooks/useFormUtilities";
 import SectionTitle from "../form-components/SectionTitle";
 import { useTranslation } from "react-i18next";
 import useFormPrefill from "@/hooks/useFormPrefill";
-  
+
 const requiredFields = [
   { fieldName: "employer", fieldCaption: "forms.employer" },
   { fieldName: "workAddress", fieldCaption: "forms.workAddress" },
@@ -44,8 +44,8 @@ const NewRegistry = () => {
   const [formData, setFormData] = useState({ minWage: true });
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
-   //preFill
-    useFormPrefill(setFormData);
+  //preFill
+  useFormPrefill(setFormData);
 
   const {
     warningModalProps,
@@ -86,11 +86,11 @@ const NewRegistry = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const localizedRequiredFields = requiredFields.map(f => ({
+    const localizedRequiredFields = requiredFields.map((f) => ({
       ...f,
-      fieldCaption: t(f.fieldCaption)
+      fieldCaption: t(f.fieldCaption),
     }));
-    
+
     const isValidationOk = validateForm(localizedRequiredFields, formData);
     if (isValidationOk) {
       setSubmitButtonDisabled(true);
@@ -131,8 +131,7 @@ const NewRegistry = () => {
               />
             </div>
 
-            
-            {/* <div className={css.flex}>
+            <div className={css.flex}>
               <TextField
                 name="email"
                 size={textfieldSize}
@@ -143,7 +142,7 @@ const NewRegistry = () => {
                 onChange={handleChange}
               />
               <div className={css.placeholder_div} />
-            </div> */}
+            </div>
           </div>
           <div className={css.form_section}>
             <SectionTitle title={t("forms.employeeData")} />
@@ -198,18 +197,27 @@ const NewRegistry = () => {
                   onChange={handleChange}
                 >
                   <MenuItem value={""}>
-                    <Typography component="em" sx={{ fontSize: typographyFontSize }}>
+                    <Typography
+                      component="em"
+                      sx={{ fontSize: typographyFontSize }}
+                    >
                       {t("forms.none")}
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Ledig"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.maritalSingle")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.maritalSingle")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Verheiratet"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.maritalMarried")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.maritalMarried")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Sonstiges"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.maritalOther")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.maritalOther")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -228,18 +236,27 @@ const NewRegistry = () => {
                   label={t("forms.gender")}
                 >
                   <MenuItem value={""}>
-                    <Typography component="em" sx={{ fontSize: typographyFontSize }}>
+                    <Typography
+                      component="em"
+                      sx={{ fontSize: typographyFontSize }}
+                    >
                       {t("forms.none")}
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Weiblich"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.genderFemale")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.genderFemale")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Männlich"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.genderMale")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.genderMale")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Andere"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.genderOther")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.genderOther")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -335,18 +352,27 @@ const NewRegistry = () => {
                   onChange={handleChange}
                 >
                   <MenuItem value={""}>
-                    <Typography component="em" sx={{ fontSize: typographyFontSize }}>
+                    <Typography
+                      component="em"
+                      sx={{ fontSize: typographyFontSize }}
+                    >
                       {t("forms.none")}
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Angestellte/r"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.employee")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.employee")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Arbeiter/in"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.worker")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.worker")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Lehrling"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.apprentice")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.apprentice")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -367,15 +393,22 @@ const NewRegistry = () => {
                   onChange={handleChange}
                 >
                   <MenuItem value={""}>
-                    <Typography component="em" sx={{ fontSize: typographyFontSize }}>
+                    <Typography
+                      component="em"
+                      sx={{ fontSize: typographyFontSize }}
+                    >
                       {t("forms.none")}
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Vollversichert"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.fullyInsured")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.fullyInsured")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Geringfügig"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.marginallyEmployed")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.marginallyEmployed")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -398,10 +431,14 @@ const NewRegistry = () => {
                   fullWidth
                 >
                   <MenuItem value={"kv"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.minWage")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.minWage")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"manualInput"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.manualInput")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.manualInput")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>

@@ -6,7 +6,7 @@ export default function ProtectedRoute({ children }) {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     // 1. Session prüfen beim Laden
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -52,6 +52,6 @@ export default function ProtectedRoute({ children }) {
   if (!authorized) {
     return null;
   }
-
+ */
   return children;
 }

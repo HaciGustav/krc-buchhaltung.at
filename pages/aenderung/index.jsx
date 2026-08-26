@@ -51,7 +51,6 @@ const Aenderung = () => {
   //preFill
   useFormPrefill(setFormData);
 
-  
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setFormData({
@@ -62,9 +61,9 @@ const Aenderung = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const localizedRequiredFields = requiredFields.map(f => ({
+    const localizedRequiredFields = requiredFields.map((f) => ({
       ...f,
-      fieldCaption: t(f.fieldCaption)
+      fieldCaption: t(f.fieldCaption),
     }));
 
     const isValidationOk = validateForm(localizedRequiredFields, formData);
@@ -73,8 +72,6 @@ const Aenderung = () => {
       sendAenderung(formData).then(() => setSubmitButtonDisabled(false));
     }
   };
-
-
 
   return (
     <>
@@ -108,7 +105,7 @@ const Aenderung = () => {
                 onChange={handleChange}
               />
             </div>
-            {/* <div className={css.flex}>
+            <div className={css.flex}>
               <TextField
                 name="email"
                 size={textfieldSize}
@@ -119,7 +116,7 @@ const Aenderung = () => {
                 onChange={handleChange}
               />
               <div className={css.placeholder_div} />
-            </div> */}
+            </div>
           </div>
           <div className={css.form_section}>
             <SectionTitle title={t("forms.employeeData")} />
@@ -255,18 +252,27 @@ const Aenderung = () => {
                   onChange={handleChange}
                 >
                   <MenuItem value={""}>
-                    <Typography component="em" sx={{ fontSize: typographyFontSize }}>
+                    <Typography
+                      component="em"
+                      sx={{ fontSize: typographyFontSize }}
+                    >
                       {t("forms.none")}
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Angestellte/r"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.employee")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.employee")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Arbeiter/in"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.worker")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.worker")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Lehrling"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.apprentice")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.apprentice")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
@@ -285,18 +291,27 @@ const Aenderung = () => {
                   value={formData?.insuranceType || ""}
                   label={t("forms.insuranceType")}
                   onChange={handleChange}
-                  slotProps={{ input: { sx: { fontSize: typographyFontSize } } }}
+                  slotProps={{
+                    input: { sx: { fontSize: typographyFontSize } },
+                  }}
                 >
                   <MenuItem value={""}>
-                    <Typography component="em" sx={{ fontSize: typographyFontSize }}>
+                    <Typography
+                      component="em"
+                      sx={{ fontSize: typographyFontSize }}
+                    >
                       {t("forms.none")}
                     </Typography>
                   </MenuItem>
                   <MenuItem value={"Vollversichert"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.fullyInsured")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.fullyInsured")}
+                    </Typography>
                   </MenuItem>
                   <MenuItem value={"Geringfügig"}>
-                    <Typography sx={{ fontSize: typographyFontSize }}>{t("forms.marginallyEmployed")}</Typography>
+                    <Typography sx={{ fontSize: typographyFontSize }}>
+                      {t("forms.marginallyEmployed")}
+                    </Typography>
                   </MenuItem>
                 </Select>
               </FormControl>
