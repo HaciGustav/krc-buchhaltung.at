@@ -89,7 +89,7 @@ const DeadlineSlip = () => {
 };
 
 export default function Landing() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const services = t("landing.services", { returnObjects: true });
   const about = t("landing.about", { returnObjects: true });
 
@@ -97,7 +97,7 @@ export default function Landing() {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.add("js");
-    const els = document.querySelectorAll("[data-reveal]");
+    const els = document.querySelectorAll("[data-reveal]:not(.in)");
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
@@ -110,7 +110,8 @@ export default function Landing() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+    // Re-run after a language switch: elements re-rendered then must be revealed too.
+  }, [i18n.language]);
 
   return (
     <>
@@ -175,7 +176,7 @@ export default function Landing() {
           </div>
           <ul className={css.services_list}>
             {services.map(([name, text], i) => (
-              <li key={name} data-reveal style={{ "--i": i % 2 }}>
+              <li key={i} data-reveal style={{ "--i": i % 2 }}>
                 <h3>{name}</h3>
                 <p>{text}</p>
               </li>
