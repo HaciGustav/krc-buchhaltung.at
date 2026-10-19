@@ -3,23 +3,26 @@
   in between paper sections, a pale plum section for the reports and the
   contact rows in two plum tints. Five type steps: 15 / 18 / 28 / 56 / name.
 */
+/* Content sits in a centred 1200px column; colour fields still run full width. */
 .hero,
 .services,
+.band,
 .reports,
 .about,
 .contact,
 .footer {
   --m: clamp(16px, 2.4vw, 36px);
-  padding-inline: var(--m);
+  --pad: max(var(--m), calc((100% - 1200px) / 2));
+  padding-inline: var(--pad);
 }
 
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: min(100svh, 820px);
   display: grid;
   grid-template-rows: auto 1fr auto;
-  padding-block: var(--m);
+  padding-block: 32px;
   background: var(--plum);
   color: #fff;
   overflow: hidden;
@@ -90,7 +93,7 @@
   padding-block: 40px;
 }
 .hero_name h1 {
-  font-size: 12.6vw;
+  font-size: clamp(48px, 7.4vw, 108px);
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 0.9;
@@ -100,7 +103,7 @@
 }
 .slogan {
   margin-top: 20px;
-  font-size: clamp(20px, 2.2vw, 32px);
+  font-size: clamp(18px, 1.7vw, 24px);
   letter-spacing: -0.01em;
   color: var(--plum-200);
 }
@@ -123,12 +126,12 @@
 
 /* ---------- Services: names at poster scale ---------- */
 .services {
-  padding-block: 160px;
+  padding-block: 120px;
   background: var(--paper);
 }
 .services_title,
 .services h3 {
-  font-size: clamp(34px, 4.6vw, 72px);
+  font-size: clamp(26px, 2.8vw, 40px);
   font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1;
@@ -146,7 +149,7 @@
   column-gap: 24px;
   align-items: last baseline;
   padding-block: 0.35em;
-  font-size: clamp(34px, 4.6vw, 72px);
+  font-size: clamp(26px, 2.8vw, 40px);
 }
 .services li h3 {
   grid-column: 1 / 9;
@@ -164,8 +167,11 @@
 
 /* ---------- Picture band ---------- */
 .band {
-  height: 82vh;
-  min-height: 420px;
+  background: var(--paper);
+}
+.band > div {
+  height: min(70vh, 600px);
+  min-height: 360px;
   overflow: hidden;
   background: var(--plum-900);
 }
@@ -182,7 +188,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: 24px;
-  padding-block: 160px;
+  padding-block: 120px;
   background: var(--plum-50);
   color: var(--ink);
 }
@@ -192,7 +198,7 @@
 .reports_text h2,
 .about h2,
 .contact h2 {
-  font-size: clamp(36px, 3.9vw, 56px);
+  font-size: clamp(28px, 2.6vw, 38px);
   font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1.02;
@@ -244,7 +250,7 @@
   );
 }
 .slip h3 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
@@ -315,7 +321,7 @@
 
 /* ---------- About: two columns of large text ---------- */
 .about {
-  padding-block: 160px 120px;
+  padding-block: 120px 96px;
   background: var(--paper);
 }
 .about h2 {
@@ -325,8 +331,8 @@
 .about p {
   columns: 2;
   column-gap: 32px;
-  font-size: clamp(22px, 2vw, 30px);
-  line-height: 1.24;
+  font-size: clamp(18px, 1.45vw, 21px);
+  line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--ink-soft);
   hyphens: auto;
@@ -363,9 +369,14 @@
 .contact h2 {
   margin-bottom: 40px;
 }
+.contact_grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 24px;
+  align-items: start;
+}
 .rows {
   list-style: none;
-  margin-inline: calc(var(--m) * -1);
 }
 .rows li {
   display: flex;
@@ -374,9 +385,9 @@
   align-content: flex-end;
   flex-wrap: wrap;
   gap: 24px;
-  min-height: 1.7em;
-  padding: 0 var(--m) 0.2em;
-  font-size: clamp(36px, 5.6vw, 88px);
+  min-height: 2.2em;
+  padding: 0 24px 0.35em;
+  font-size: clamp(26px, 3vw, 42px);
   letter-spacing: -0.035em;
   line-height: 1;
   color: var(--plum-900);
@@ -390,19 +401,6 @@
 }
 .rows a:hover {
   color: var(--plum);
-}
-.side {
-  flex-shrink: 0;
-  font-size: clamp(18px, 2vw, 28px);
-  letter-spacing: -0.01em;
-  color: var(--plum);
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 0.2s;
-}
-a.side:hover {
-  text-decoration-color: currentColor;
 }
 .write {
   display: inline-flex;
@@ -428,9 +426,11 @@ a.side:hover {
 
 .place {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+.place figure:first-child {
+  grid-column: 1 / 3;
 }
 .place figure {
   display: flex;
@@ -456,10 +456,9 @@ a.side:hover {
 
 /* ---------- Footer: the email as the headline ---------- */
 .footer {
-  min-height: 72svh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  padding-block: 40px var(--m);
+  padding-block: 40px 32px;
   background: var(--plum);
   color: #fff;
   font-size: 15px;
@@ -482,16 +481,16 @@ a.side:hover {
 }
 .footer_main {
   align-self: end;
-  padding-block: 120px 56px;
+  padding-block: 96px 48px;
 }
 .footer_main p {
-  font-size: clamp(20px, 2.2vw, 32px);
+  font-size: clamp(18px, 1.7vw, 24px);
   color: var(--plum-200);
   margin-bottom: 16px;
 }
 .footer_mail {
   display: inline-block;
-  font-size: 8.4vw;
+  font-size: clamp(32px, 5.2vw, 76px);
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 0.95;
@@ -548,8 +547,11 @@ a.side:hover {
 
 /* ---------- Tablet ---------- */
 @media (max-width: 1000px) {
-  .side {
-    display: none;
+  .contact_grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .place figure:first-child {
+    grid-column: auto;
   }
   .hero_nav a:not(:last-of-type) {
     display: none;
@@ -626,7 +628,7 @@ a.side:hover {
     order: 4;
   }
   .hero_name h1 {
-    font-size: 12vw;
+    font-size: 10.4vw;
   }
   .slogan {
     margin-top: 12px;
@@ -664,7 +666,7 @@ a.side:hover {
     padding-block: 96px;
   }
   .services li {
-    font-size: 11vw;
+    font-size: 7.4vw;
     display: block;
   }
   .services li p {
@@ -673,9 +675,9 @@ a.side:hover {
   }
   .services_title,
   .services h3 {
-    font-size: 10vw;
+    font-size: 7.4vw;
   }
-  .band {
+  .band > div {
     height: 56vh;
     min-height: 0;
   }
@@ -688,8 +690,8 @@ a.side:hover {
   }
   .about p {
     columns: 1;
-    font-size: 20px;
-    line-height: 1.3;
+    font-size: 17px;
+    line-height: 1.5;
     hyphens: manual;
   }
   .contact {
@@ -702,8 +704,8 @@ a.side:hover {
     padding-top: 96px;
   }
   .rows li {
-    font-size: 9.6vw;
-    min-height: 84px;
+    font-size: 7.4vw;
+    min-height: 68px;
     padding-bottom: 14px;
   }
   .place {
@@ -718,7 +720,8 @@ a.side:hover {
     gap: 12px;
   }
   .footer_mail {
-    font-size: 12.4vw;
+    font-size: 7.2vw;
+    margin-left: 0;
   }
   .footer_meta {
     flex-direction: column;

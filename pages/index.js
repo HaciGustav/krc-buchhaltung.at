@@ -92,7 +92,6 @@ export default function Landing() {
   const { t } = useTranslation();
   const services = t("landing.services", { returnObjects: true });
   const about = t("landing.about", { returnObjects: true });
-  const side = t("landing.rowsSide", { returnObjects: true });
 
   // Entrances: elements marked data-reveal rise in once as they enter the screen.
   useEffect(() => {
@@ -180,13 +179,15 @@ export default function Landing() {
         </section>
 
         <figure className={css.band}>
-          <img
+          <div>
+            <img
             src="/assets/header2.jpg"
             alt={t("landing.bandAlt")}
             width={1920}
             height={1280}
             loading="lazy"
           />
+          </div>
         </figure>
 
         <section id="meldungen" className={css.reports} aria-labelledby="reports-title">
@@ -236,68 +237,55 @@ export default function Landing() {
           <h2 id="contact-title" data-reveal>
             {t("landing.contactTitle")}
           </h2>
-          <ul className={css.rows}>
-            <li data-reveal>
-              <a href={MAPS} target="_blank" rel="noreferrer">
-                {t("footer.address")}
-              </a>
-              <a href={MAPS} target="_blank" rel="noreferrer" className={css.side}>
-                {side[0]}
-              </a>
-            </li>
-            <li data-reveal>
-              {t("footer.city")}
-              <span className={css.side}>{side[1]}</span>
-            </li>
-            <li data-reveal>
-              {t("landing.hoursRow")}
-              <span className={css.side}>{side[2]}</span>
-            </li>
-            <li data-reveal>
-              <a href={TEL}>{PHONE}</a>
-              <a href={TEL} className={css.side}>
-                {side[3]}
-              </a>
-            </li>
-            <li data-reveal>
-              <a href={"mailto:" + MAIL} className={css.write}>
-                {t("landing.write")}
-                <span className={css.round}>
-                  <ArrowForward />
-                </span>
-              </a>
-              <a href={"mailto:" + MAIL} className={css.side}>
-                {MAIL}
-              </a>
-            </li>
-          </ul>
-          <div className={css.place}>
-            <figure data-reveal>
-              <img
-                src="/assets/found/kurpark-oberlaa-wien.jpg"
-                alt={t("landing.parkCaption")}
-                width={1920}
-                height={1078}
-                loading="lazy"
-              />
-              <figcaption>{t("landing.parkCaption")}</figcaption>
-            </figure>
-            <figure data-reveal style={{ "--i": 1 }}>
-              <img
-                src="/assets/found/u-bahn-station-oberlaa-03.jpg"
-                alt={t("landing.ubahnCaption")}
-                width={1920}
-                height={1280}
-                loading="lazy"
-              />
-              <figcaption>{t("landing.ubahnCaption")}</figcaption>
-            </figure>
-            <figure className={css.map} data-reveal style={{ "--i": 2 }}>
-              <MapWithNoSSR height="100%" />
-              <figcaption>
-                {t("footer.companyFull")}, {t("footer.address")}
-              </figcaption>
-            </figure>
+          <div className={css.contact_grid}>
+            <ul className={css.rows}>
+              <li data-reveal>
+                <a href={MAPS} target="_blank" rel="noreferrer">
+                  {t("footer.address")}
+                </a>
+              </li>
+              <li data-reveal>{t("footer.city")}</li>
+              <li data-reveal>{t("landing.hoursRow")}</li>
+              <li data-reveal>
+                <a href={TEL}>{PHONE}</a>
+              </li>
+              <li data-reveal>
+                <a href={"mailto:" + MAIL} className={css.write}>
+                  {t("landing.write")}
+                  <span className={css.round}>
+                    <ArrowForward />
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <div className={css.place}>
+              <figure data-reveal>
+                <img
+                  src="/assets/found/kurpark-oberlaa-wien.jpg"
+                  alt={t("landing.parkCaption")}
+                  width={1920}
+                  height={1078}
+                  loading="lazy"
+                />
+                <figcaption>{t("landing.parkCaption")}</figcaption>
+              </figure>
+              <figure data-reveal style={{ "--i": 1 }}>
+                <img
+                  src="/assets/found/u-bahn-station-oberlaa-03.jpg"
+                  alt={t("landing.ubahnCaption")}
+                  width={1920}
+                  height={1280}
+                  loading="lazy"
+                />
+                <figcaption>{t("landing.ubahnCaption")}</figcaption>
+              </figure>
+              <figure className={css.map} data-reveal style={{ "--i": 2 }}>
+                <MapWithNoSSR height="100%" />
+                <figcaption>
+                  {t("footer.companyFull")}, {t("footer.address")}
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </section>
       </main>
