@@ -1,41 +1,99 @@
 .flex {
   display: flex;
-  column-gap: 8px;
+  column-gap: 16px;
   width: 100%;
+}
+
+.flex > :global(.MuiFormControl-root) {
+  width: 100% !important;
 }
 
 .flex_column {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: 16px;
   width: 100%;
 }
 
+/* Form 1fr + rail 280px, 24px gap: the form and its rail close the canvas. */
 .container {
-  padding-inline: 2rem;
-  padding-block: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  column-gap: 24px;
+  align-items: start;
+  max-width: 1200px;
+}
+.container > * {
+  grid-column: 1;
+}
+.container > .form_aside {
+  grid-column: 2;
+  grid-row: 2;
+  position: sticky;
+  top: 36px;
+}
+
+.form_aside dl {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.form_aside dt {
+  font-size: 13px;
+  color: var(--muted);
+}
+.form_aside a {
+  color: var(--text);
+}
+.form_aside a:hover {
+  color: var(--accent);
+}
+
+.form_header {
+  margin-bottom: 24px;
+  max-width: 640px;
+}
+.form_header h1 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.form_header p {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
 }
 
 .form_section {
-  padding: 10px;
-  border: 1px solid #a0a0a053;
-  border-radius: 5px;
+  padding: 20px 24px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
+  row-gap: 16px;
   width: 100%;
-  transition: all 0.2s ease-in-out;
-}
-
-.form_section:hover {
-  box-shadow: rgba(50, 50, 93, 0.152) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.158) 0px 3px 7px -3px;
 }
 
 .section_title {
-  font-size: 1.3rem;
-  font-style: italic;
-  padding-bottom: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding-bottom: 4px;
+}
+
+/* Submit row: the button sits at the right end of the form. */
+.form_section + .flex:last-child,
+.flex_column > .flex:last-child {
+  justify-content: flex-end;
 }
 
 .dateinput {
@@ -53,16 +111,46 @@
   color: black !important;
 }
 
-@media (max-width: 500px) {
-  .flex_column {
-    row-gap: 10px;
+/* Privacy page text */
+.prose {
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.prose h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 24px 0 6px;
+}
+
+@media (max-width: 1100px) {
+  .container {
+    display: block;
+  }
+  .container > .form_aside {
+    position: static;
+    margin-bottom: 16px;
+  }
+  .form_aside dl {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .form_section {
+    padding: 16px;
   }
   .flex {
     flex-wrap: wrap;
-    row-gap: 10px;
+    row-gap: 16px;
   }
   .placeholder_div {
     display: none;
+  }
+  .flex_column > .flex:last-child > button {
     width: 100%;
   }
 }

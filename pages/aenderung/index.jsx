@@ -16,7 +16,7 @@ import DateInput from "@/components/form-components/DateInput";
 import useFormCalls from "@/hooks/useFormCalls";
 import useFormUtilities from "@/hooks/useFormUtilities";
 import ValidationWarningModal from "@/components/form-components/ValidationWarningModal";
-import SectionTitle from "@/components/form-components/SectionTitle";
+import SectionTitle, { FormHeader } from "@/components/form-components/SectionTitle";
 
 // LOGIN AUTH
 import ProtectedRoute from "@/components/ProtectedRoute";
@@ -43,7 +43,6 @@ const Aenderung = () => {
     warningModalProps,
     validateForm,
     handleCloseModal,
-    pageHeaderSize,
     textfieldSize,
     typographyFontSize,
   } = useFormUtilities();
@@ -80,9 +79,7 @@ const Aenderung = () => {
         handleClose={handleCloseModal}
       />
       <form className={css.container} onSubmit={handleSubmit}>
-        <Typography variant="h4" sx={{ fontSize: pageHeaderSize }} gutterBottom>
-          {t("forms.change")}
-        </Typography>
+        <FormHeader kind="change" />
 
         <div className={css.flex_column}>
           <div className={css.form_section}>

@@ -1,239 +1,113 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
+import Link from "next/link";
 import CssBaseline from "@mui/material/CssBaseline";
-import IconButton from "@mui/material/IconButton";
+import HomeOutlined from "@mui/icons-material/HomeOutlined";
+import PersonAddAltOutlined from "@mui/icons-material/PersonAddAltOutlined";
+import PersonRemoveOutlined from "@mui/icons-material/PersonRemoveOutlined";
+import EditOutlined from "@mui/icons-material/EditOutlined";
+import UndoOutlined from "@mui/icons-material/UndoOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-
-import SidebarList from "./List";
-import {
-  AppBar,
-  DrawerHeader,
-  Main,
-  drawerHeight,
-  drawerWidth,
-} from "./LayoutComponents";
-import Link from "next/link";
-import { useMediaQuery } from "@mui/material";
 import css from "@/styles/layout.module.css";
-import LangSwitch from "../LangSwitch"; // Dein Sprach-Schalter
-import AnnouncementDialog from "../AnnouncementDialog";
+import LangSwitch from "../LangSwitch";
+
+export const NAV = [
+  { href: "/anmeldung", key: "registration", Icon: PersonAddAltOutlined },
+  { href: "/abmeldung", key: "deregistration", Icon: PersonRemoveOutlined },
+  { href: "/aenderung", key: "change", Icon: EditOutlined },
+  { href: "/storno", key: "cancellation", Icon: UndoOutlined },
+];
+
+const Brand = ({ t }) => (
+  <Link href="/" className={css.brand}>
+    <img src="/assets/logo.svg" alt="" width={36} height={36} />
+    <span>
+      <strong>KRC</strong>
+      <span className={css.brand_sub}>{t("header.kanzlei")}</span>
+    </span>
+  </Link>
+);
 
 const Layout = ({ children }) => {
   const { t, i18n } = useTranslation();
   const router = useRouter();
-  const theme = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const [open, setOpen] = React.useState(true);
-
-  const screenMedium = useMediaQuery("(max-width:800px)");
-
-  const handleDrawerToggle = () => {
-    setOpen(!open);
-  };
-
-  // --- Sprache aus dem Gedächtnis laden ---
-  React.useEffect(() => {
+  useEffect(() => {
     const savedLang = localStorage.getItem("krc_language");
-    if (savedLang && i18n.language !== savedLang) {
-      i18n.changeLanguage(savedLang);
-    }
+    if (savedLang && i18n.language !== savedLang) i18n.changeLanguage(savedLang);
   }, [i18n]);
 
-  React.useEffect(() => {
-    setOpen(screenMedium ? false : true);
-  }, [screenMedium]);
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  // Close the phone menu after navigating.
+  useEffect(() => setMenuOpen(false), [router.asPath]);
+
+  const item = (href, label, Icon) => (
+    <Link
+      key={href}
+      href={href}
+      className={css.nav_item}
+      aria-current={router.pathname === href ? "page" : undefined}
+    >
+      <Icon sx={{ fontSize: 18 }} />
+      {label}
+    </Link>
+  );
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+    <div className={css.shell}>
       <CssBaseline />
-      {/* <AnnouncementDialog /> */}
-      {/* THE TOP PURPLE HEADER BAR */}
-      <AppBar
-        sx={{
-          height: drawerHeight,
-          backgroundColor: "#692046",
-        }}
-      >
-        {/* Mobile view layout for the top bar */}
-        {screenMedium && (
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between", // Platz zwischen Logo und Button
-              alignItems: "center",
-              paddingInline: "10px",
-              color: "#fff",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                columnGap: "10px",
-              }}
-            >
-              <IconButton onClick={() => setOpen(!open)}>
-                {open ? (
-                  <CloseIcon sx={{ color: "#fff" }} />
-                ) : (
-                  <MenuIcon sx={{ color: "#fff" }} />
-                )}
-              </IconButton>
 
-              <Link
-                href={"/"}
-                style={{
-                  textDecoration: "none",
-                  backgroundColor: "#591036",
-                  display: "grid",
-                  placeItems: "center",
-                  width: "2.5rem",
-                  height: "2.5rem",
-                  borderRadius: "25%",
-                }}
-              >
-                <img
-                  style={{ width: "2rem" }}
-                  src="/assets/logo.svg"
-                  alt="Logo"
-                />
-              </Link>
-
-              <h3
-                style={{ fontSize: "0.7rem", textAlign: "center", margin: 0 }}
-              >
-                <span style={{ fontSize: "0.7rem", padding: "0" }}>KRC </span>
-                {t("header.kanzlei")}
-              </h3>
-            </div>
-
-            {/* Sprachwechsler Mobile */}
-            <LangSwitch />
-          </div>
-        )}
-
-        {/* Desktop view layout for the top bar (contact info) */}
-        {!screenMedium && (
-          <div
-            className={css.header_info_div}
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              height: "100%",
-              paddingRight: "20px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "20px",
-              }}
-            >
-              {t("header.address")}
-              <span style={{ paddingInline: "3px" }} />
-              <a
-                style={{ color: "#fff", textDecoration: "none" }}
-                href="tel:+436601743900"
-              >
-                +43 660 174 39 00
-              </a>
-              <span style={{ paddingInline: "3px" }}> | </span>
-              <a
-                style={{ color: "#fff", textDecoration: "none" }}
-                href="mailto:office@krc-buchhaltung.at"
-              >
-                office@krc-buchhaltung.at
-              </a>
-            </div>
-
-            {/* Sprachwechsler Desktop */}
-            <LangSwitch />
-          </div>
-        )}
-      </AppBar>
-
-      {/* THE LEFT SIDEBAR MENU */}
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          zIndex: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-            backgroundColor: "#fff",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader />
-        <div
-          style={{
-            display: "flex",
-            columnGap: "1rem",
-            alignItems: "center",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            paddingBlock: "2rem",
-          }}
+      <header className={css.topbar}>
+        <Brand t={t} />
+        <button
+          type="button"
+          className={css.menu_button}
+          aria-expanded={menuOpen}
+          aria-controls="sidebar"
+          aria-label={t("navigation.menu")}
+          onClick={() => setMenuOpen(!menuOpen)}
         >
-          <Link href={"/"} style={{ textDecoration: "none" }}>
-            <img style={{ width: "8rem" }} src="/assets/logo.svg" alt="Logo" />
-          </Link>
-          <h3
-            style={{
-              color: "#000",
-              fontSize: "1rem",
-              textAlign: "center",
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontSize: "1.5rem",
-                display: "block",
-                width: "100%",
-                padding: "0",
-              }}
-            >
-              KRC
-            </span>
-            {t("header.kanzlei")}
-          </h3>
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
+        </button>
+      </header>
+
+      <aside id="sidebar" className={css.sidebar} data-open={menuOpen}>
+        <div className={css.sidebar_brand}>
+          <Brand t={t} />
         </div>
-        <Divider />
-        <SidebarList />
-      </Drawer>
 
-      {/* THE MAIN CONTENT AREA ON THE RIGHT */}
-      <Main
-        open={open}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          width: "100%",
-        }}
-      >
-        <DrawerHeader />
+        <nav className={css.nav} aria-label={t("navigation.group")}>
+          {item("/", t("navigation.overview"), HomeOutlined)}
+          <p className={css.nav_group}>{t("navigation.group")}</p>
+          {NAV.map(({ href, key, Icon }) => item(href, t(`navigation.${key}`), Icon))}
+        </nav>
 
-        {/* Echter Content */}
-        <Box sx={{ flexGrow: 1 }}>{children}</Box>
-      </Main>
-    </Box>
+        <div className={css.sidebar_foot}>
+          <p className={css.nav_group}>{t("navigation.contact")}</p>
+          <a href="tel:+436601743900">{t("footer.phone")}</a>
+          <a href="mailto:office@krc-buchhaltung.at">{t("footer.email")}</a>
+          <p className={css.muted}>
+            {t("footer.hoursMonThu")}
+            <br />
+            {t("footer.hoursFri")}
+          </p>
+          <div className={css.foot_row}>
+            <LangSwitch />
+            <Link href="/dsvgo" className={css.muted}>
+              {t("footer.privacy")}
+            </Link>
+          </div>
+        </div>
+      </aside>
+
+      <main className={css.main}>{children}</main>
+    </div>
   );
 };
 

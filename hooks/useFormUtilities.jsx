@@ -36,7 +36,6 @@ const useFormUtilities = () => {
 
   const handleCloseModal = () => setWarningModalProps(initModalProps);
 
-  const pageHeaderSize = screenSmall ? "1.5rem" : undefined;
   const textfieldSize = screenSmall ? "small" : undefined;
   const typographyFontSize = screenSmall ? "smaller" : "small";
 
@@ -48,7 +47,6 @@ const useFormUtilities = () => {
 
     //input styles
     screenSmall,
-    pageHeaderSize,
     textfieldSize,
     typographyFontSize,
   };

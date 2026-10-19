@@ -18,7 +18,7 @@
     "city": "1100 Viyana",
     "phone": "+43 660 174 39 00",
     "email": "office@krc-buchhaltung.at",
-    "hours": "ÇALIŞMA SAATLERİ",
+    "hours": "Çalışma saatleri",
     "hoursMonThu": "Pazartesi-Perşembe: 09:00-15:00",
     "hoursFri": "Cuma: Kapalı",
     "hoursByAppointment": "veya randevu ile",
@@ -30,7 +30,11 @@
     "registration": "Kayıt",
     "deregistration": "Kaydı Silme",
     "change": "Değişiklik",
-    "cancellation": "İptal"
+    "cancellation": "İptal",
+    "overview": "Genel bakış",
+    "group": "Bildirimler",
+    "contact": "İletişim",
+    "menu": "Menü"
   },
   "forms": {
     "registration": "Kayıt Formu",
@@ -94,7 +98,13 @@
     "meldezettel": "İkametgah (Meldezettel)",
     "passport": "Pasaport",
     "changePurpose": "Değişiklik Amacı",
-    "changePurposePlaceholder": "Lütfen hangi bilgileri değiştirmek istediğinizi açıklayın"
+    "changePurposePlaceholder": "Lütfen hangi bilgileri değiştirmek istediğinizi açıklayın",
+    "registrationIntro": "Yeni çalışanı kaydedin. Kayıt ilk iş gününden önce bize ulaşmalıdır.",
+    "deregistrationIntro": "Çalışanın çıkışını bildirin. Lütfen son iş gününden sonra 7 gün içinde gönderin.",
+    "changeIntro": "Mevcut bir çalışanın maaş, adres veya çalışma saati değişikliklerini bildirin.",
+    "cancellationIntro": "Gönderilmiş bir giriş veya çıkış bildirimini geri çekin.",
+    "documents": "Belgeler",
+    "sending": "Gönderiliyor …"
   },
   "errors": {
     "missingInput": "Eksik Giriş!",
@@ -112,5 +122,39 @@
     "legalBasisText": "Web sitesinde veriler yalnızca yasal hükümlere (GDPR, TKG 2003) dayanarak işlenir. Veri işleme (web mağazası, ürün puanlamaları, rezervasyon aracı ve kullanıcı hesabı) GDPR'nin 6. Madde 1. Bent b) (sözleşmenin yerine getirilmesi) dayanarak gerçekleştirilir. Analiz araçlarının kullanılması durumunda, veri kullanımı GDPR'nin 6. Madde 1. Bent f) (meşru menfaat) dayanarak gerçekleştirilir. Veri kullanımındaki meşru menfaat, web sitesinin iyileştirilmesi ve çevrimiçi reklam başarısının ölçülmesidir. BT veri güvenliği önlemleri de GDPR'nin 6. Madde 1. Bent f) (meşru menfaat) dayanarak uygulanır. Veri kullanımındaki meşru menfaat, kendi BT sistemlerinin korunmasıdır. Sosyal medya eklentilerinin kullanımı yalnızca rıza verildikten sonra gerçekleştirilir. Bu nedenle yasal dayanak GDPR'nin 6. Madde 1. Bent a) (rıza) dir. Rıza, her web sitesi ziyaretinde yeniden verilmelidir.",
     "yourRights": "Sizin Haklarınız",
     "yourRightsText": "Sizin, temel olarak erişim, düzeltme, silme, işleme kısıtlaması, veri taşınabilirliği, geri çekilme ve itiraz haklarınız vardır. Verilerinizin işlenmesinin veri koruma yasalarını ihlal ettiğine veya veri koruma haklarınızın başka bir şekilde ihlal edildiğine inanıyorsanız, denetleme makamına şikayette bulunabilirsiniz. Avusturya'da bu, veri koruma makamıdır."
+  },
+  "home": {
+    "title": "Personel bildirimleri",
+    "lead": "Yeni işe başlayan, işten ayrılan veya bilgileri değişen çalışanlarınızı bildirin. ÖGK bildirimini ve bordroyu biz hallederiz.",
+    "question": "Neyi bildirmek istiyorsunuz?",
+    "deadline": "Süre",
+    "needs": "Hazır bulundurun",
+    "open": "Formu aç",
+    "registration": {
+      "title": "Yeni çalışan",
+      "text": "Sosyal sigorta ve bordro için işe giriş bildirimi.",
+      "deadline": "İlk iş gününden önce",
+      "needs": "E-Card, Meldezettel, pasaport"
+    },
+    "deregistration": {
+      "title": "Çalışan işten ayrılıyor",
+      "text": "Son iş günü, fesih türü ve kalan izin ile çıkış bildirimi.",
+      "deadline": "Son iş gününden sonra 7 gün içinde",
+      "needs": "Son iş günü, fesih türü"
+    },
+    "change": {
+      "title": "Maaş, adres veya çalışma saati değişiyor",
+      "text": "Mevcut çalışanlar için değişiklik bildirimi.",
+      "deadline": "Değişiklikten sonra 7 gün içinde",
+      "needs": "Yeni bilgiler ve geçerlilik tarihi"
+    },
+    "cancellation": {
+      "title": "Bildirimi geri çek",
+      "text": "Gönderilmiş bir giriş veya çıkış bildirimini iptal edin.",
+      "deadline": "Mümkün olan en kısa sürede",
+      "needs": "Gönderilen bildirimin tarihi"
+    },
+    "contactLead": "Bir bildirimle ilgili sorunuz mu var? Bizi arayın veya yazın.",
+    "map": "Google Haritalar’da aç"
   }
 }

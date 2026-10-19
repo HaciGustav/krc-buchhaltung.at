@@ -18,7 +18,7 @@
     "city": "1100 Wien",
     "phone": "+43 660 174 39 00",
     "email": "office@krc-buchhaltung.at",
-    "hours": "ÖFFNUNGSZEITEN",
+    "hours": "Öffnungszeiten",
     "hoursMonThu": "Mo-Do: 09:00-15:00",
     "hoursFri": "Fr: Geschlossen",
     "hoursByAppointment": "oder nach Terminvereinbarung",
@@ -30,7 +30,11 @@
     "registration": "Anmeldung",
     "deregistration": "Abmeldung",
     "change": "Änderung",
-    "cancellation": "Stornierung"
+    "cancellation": "Stornierung",
+    "overview": "Übersicht",
+    "group": "Meldungen",
+    "contact": "Kontakt",
+    "menu": "Menü"
   },
   "forms": {
     "registration": "Anmeldeformular",
@@ -94,7 +98,13 @@
     "meldezettel": "Meldezettel",
     "passport": "Reisepass",
     "changePurpose": "Änderungszweck",
-    "changePurposePlaceholder": "Bitte beschreiben Sie, welche Daten Sie ändern möchten"
+    "changePurposePlaceholder": "Bitte beschreiben Sie, welche Daten Sie ändern möchten",
+    "registrationIntro": "Neue Dienstnehmerin oder neuen Dienstnehmer anmelden. Die Anmeldung muss vor dem ersten Arbeitstag bei uns sein.",
+    "deregistrationIntro": "Dienstnehmer abmelden. Bitte binnen 7 Tagen nach dem letzten Arbeitstag senden.",
+    "changeIntro": "Änderungen bei Gehalt, Adresse oder Arbeitszeit eines bestehenden Dienstnehmers melden.",
+    "cancellationIntro": "Eine bereits gesendete An- oder Abmeldung zurückziehen.",
+    "documents": "Dokumente",
+    "sending": "Wird gesendet …"
   },
   "errors": {
     "missingInput": "Fehlende Eingabe!",
@@ -112,5 +122,39 @@
     "legalBasisText": "Auf der Website werden Daten ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG 2003) verarbeitet. Die Datenverarbeitung (Webshop, Produktbewertungen, Buchungstool und Nutzeraccount) erfolgt auf Grundlage des Art 6 Abs. 1 lit. b) (Vertragserfüllungszwecke) DSGVO. Im Falle des Einsatzes von Analysetools erfolgt die Datenverwendung auf Grundlage des Art 6 Abs. 1 lit f) (berechtigtes Interesse) DSGVO. Das berechtigte Interesse an der Datenverwendung ist die Verbesserung des Webauftritts sowie die Erfolgsmessung von Online-Werbung. Der Einsatz von IT-Datensicherheitsmaßnahmen erfolgt ebenfalls auf Grundlage des Art 6 Abs. 1 lit f) (berechtigtes Interesse) DSGVO. Das berechtigte Interesse an der Datenverwendung ist die Absicherung der eigenen IT-Systeme. Der Einsatz von Social-Media-Plugins erfolgt nur nach Einwilligung. Rechtsgrundlage ist daher Art. 6 Abs. 1 lit a) DSGVO. Die Einwilligung ist bei jedem Website-Aufruf erneut zu erteilen.",
     "yourRights": "Ihre Rechte",
     "yourRightsText": "Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche sonst in einer Weise verletzt worden sind, können Sie sich bei der Aufsichtsbehörde beschweren. In Österreich ist dies die Datenschutzbehörde."
+  },
+  "home": {
+    "title": "Personalmeldungen",
+    "lead": "Melden Sie neue, ausscheidende oder geänderte Dienstnehmer. Wir übernehmen die Meldung an die ÖGK und die Lohnverrechnung.",
+    "question": "Was möchten Sie melden?",
+    "deadline": "Frist",
+    "needs": "Bitte bereithalten",
+    "open": "Formular öffnen",
+    "registration": {
+      "title": "Neue Mitarbeiterin oder neuer Mitarbeiter",
+      "text": "Anmeldung zur Sozialversicherung und Lohnverrechnung.",
+      "deadline": "Vor dem ersten Arbeitstag",
+      "needs": "E-Card, Meldezettel, Reisepass"
+    },
+    "deregistration": {
+      "title": "Mitarbeiter scheidet aus",
+      "text": "Abmeldung mit letztem Arbeitstag, Kündigungsart und Resturlaub.",
+      "deadline": "Binnen 7 Tagen nach dem letzten Arbeitstag",
+      "needs": "Letzter Arbeitstag, Kündigungsart"
+    },
+    "change": {
+      "title": "Gehalt, Adresse oder Arbeitszeit ändert sich",
+      "text": "Änderungsmeldung für bestehende Dienstnehmer.",
+      "deadline": "Binnen 7 Tagen nach der Änderung",
+      "needs": "Neue Daten und Gültigkeitsdatum"
+    },
+    "cancellation": {
+      "title": "Meldung zurückziehen",
+      "text": "Eine bereits gesendete An- oder Abmeldung stornieren.",
+      "deadline": "So bald wie möglich",
+      "needs": "Datum der gesendeten Meldung"
+    },
+    "contactLead": "Fragen zu einer Meldung? Rufen Sie uns an oder schreiben Sie uns.",
+    "map": "Auf Google Maps öffnen"
   }
 }

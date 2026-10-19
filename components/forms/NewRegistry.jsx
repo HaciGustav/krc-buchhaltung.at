@@ -16,7 +16,7 @@ import { useState } from "react";
 import FileInput from "../form-components/FileInput";
 import ValidationWarningModal from "../form-components/ValidationWarningModal";
 import useFormUtilities from "@/hooks/useFormUtilities";
-import SectionTitle from "../form-components/SectionTitle";
+import SectionTitle, { FormHeader } from "../form-components/SectionTitle";
 import { useTranslation } from "react-i18next";
 import useFormPrefill from "@/hooks/useFormPrefill";
 
@@ -53,7 +53,6 @@ const NewRegistry = () => {
     handleCloseModal,
     validateForm,
     screenSmall,
-    pageHeaderSize,
     textfieldSize,
     typographyFontSize,
   } = useFormUtilities();
@@ -106,9 +105,7 @@ const NewRegistry = () => {
         handleClose={handleCloseModal}
       />
       <form className={css.container} onSubmit={handleSubmit}>
-        <Typography variant="h4" sx={{ fontSize: pageHeaderSize }} gutterBottom>
-          {t("forms.registration")}
-        </Typography>{" "}
+        <FormHeader kind="registration" />
         <div className={css.flex_column}>
           <div className={css.form_section}>
             <SectionTitle title={t("forms.companyData")} />

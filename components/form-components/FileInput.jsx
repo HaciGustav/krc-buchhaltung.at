@@ -29,7 +29,7 @@ const FileInput = ({ id, label, name, value, handleChange }) => {
         style={{ rowGap: "5px" }}
       >
         <Button
-          variant="contained"
+          variant="outlined"
           fullWidth
           component="span"
           startIcon={<CloudUploadIcon />}

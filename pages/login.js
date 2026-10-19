@@ -31,10 +31,10 @@ export default function Login() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 8 }}>
-      <Paper elevation={3} sx={{ p: 4, borderRadius: "16px", borderTop: "6px solid #5a1835" }}>
+    <Container maxWidth="xs" disableGutters sx={{ mt: { xs: 2, md: "12vh" } }}>
+      <Paper elevation={0} sx={{ p: { xs: 2.5, md: 3.5 }, borderRadius: "8px", border: "1px solid var(--border)" }}>
         
-        <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: "bold", mb: 3 }}>
+        <Typography variant="h5" component="h1" gutterBottom sx={{ fontSize: 24, fontWeight: 500, mb: 3 }}>
           KRC Buchhaltung - Login
         </Typography>
 
@@ -45,7 +45,7 @@ export default function Login() {
         )}
 
         <form onSubmit={handleLogin}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
             
             <TextField
               label="E-Mail-Adresse"
@@ -54,7 +54,6 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               required
               fullWidth
-              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "8px" } }}
             />
 
             <TextField
@@ -64,24 +63,13 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
               fullWidth
-              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "8px" } }}
             />
 
             <Button 
               type="submit" 
               variant="contained" 
               size="large"
-              sx={{ 
-                mt: 1, 
-                py: 1.5, 
-                fontWeight: "bold", 
-                bgcolor: "#5a1835", 
-                borderRadius: "8px",
-                textTransform: "none",
-                "&:hover": { 
-                  bgcolor: "#421126" 
-                } 
-              }}
+              sx={{ mt: 1 }}
             >
               Anmelden
             </Button>

@@ -1,3 +1,20 @@
+:root {
+  --ground: #f5f4f2;
+  --surface: #ffffff;
+  --raised: #faf9f8;
+  --hover: #ebe9e6;
+  --active: #e4e2df;
+  --border: #e6e4e1;
+  --rule: #efedea;
+  --control: #d1d5db;
+  --text: #111111;
+  --text-2: #2b2b2b;
+  --muted: #5f6368;
+  --accent: #692046; /* KRC plum: brand mark, links, focus */
+  --primary: #1d1f20;
+  --font: "Geist", Inter, system-ui, sans-serif;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,17 +25,17 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-}
-a {
-  text-decoration: none;
-  /* color: #fff; */
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font);
 }
 
-.scroll-opacity-content {
-  transition: opacity 0.5s ease-in-out;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* max-width: 800px; */
-  margin: 0 auto;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }

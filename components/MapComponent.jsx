@@ -4,7 +4,7 @@ import L from "leaflet";
 import { useEffect, useRef } from "react";
 
 const position = [48.141283617898104, 16.387249375626386];
-const MapComponent = () => {
+const MapComponent = ({ height = "300px" }) => {
   const linkRef = useRef(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const MapComponent = () => {
         center={position}
         zoom={13}
         scrollWheelZoom={true}
-        style={{ height: "300px", width: "100%" }}
+        style={{ height, width: "100%" }}
       >
         <TileLayer
           attribution=""
