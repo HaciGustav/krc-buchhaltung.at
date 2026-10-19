@@ -22,7 +22,7 @@ export const NAV = [
 
 const Brand = ({ t }) => (
   <Link href="/" className={css.brand}>
-    <img src="/assets/logo.svg" alt="" width={36} height={36} />
+    <img src="/assets/logo-light.svg" alt="" width={44} height={33} />
     <span>
       <strong>KRC</strong>
       <span className={css.brand_sub}>{t("header.kanzlei")}</span>

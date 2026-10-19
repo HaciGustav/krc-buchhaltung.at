@@ -187,7 +187,7 @@ export default function Landing() {
       <header className={css.hero}>
         <div className={css.hero_top}>
           <div className={css.hero_intro}>
-            <img src="/assets/logo.svg" alt="" width={48} height={36} className={css.logo} />
+            <img src="/assets/logo-light.svg" alt="KRC" width={72} height={54} className={css.logo} />
             <p>{t("landing.lead")}</p>
             <a href="#meldungen" className={css.button_light}>
               {t("landing.cta")}
