@@ -17,7 +17,9 @@ import DateInput from "@/components/form-components/DateInput";
 import useFormCalls from "@/hooks/useFormCalls";
 import useFormUtilities from "@/hooks/useFormUtilities";
 import ValidationWarningModal from "@/components/form-components/ValidationWarningModal";
-import SectionTitle, { FormHeader } from "@/components/form-components/SectionTitle";
+import SectionTitle, {
+  FormHeader,
+} from "@/components/form-components/SectionTitle";
 
 // LOGIN AUTH
 import ProtectedRoute from "@/components/ProtectedRoute";
@@ -33,7 +35,7 @@ const requiredFields = [
   { fieldName: "lastWorkDay", fieldCaption: "forms.deregistrationDate" },
   { fieldName: "remainingHolidays", fieldCaption: "forms.remainingHolidays" },
   { fieldName: "terminationType", fieldCaption: "forms.terminationType" },
-  { fieldName: "confirmation", fieldCaption: "forms.dsvgo" },
+  { fieldName: "confirmation", fieldCaption: "forms.dsgvo" },
 ];
 
 const Abmeldung = () => {
@@ -236,7 +238,14 @@ const Abmeldung = () => {
                   label={
                     <span style={{ fontSize: typographyFontSize }}>
                       {t("forms.confirmation")}
-                      <a href="/dsvgo"> {t("forms.dsvgo")}</a>
+                      <a
+                        href="/dsgvo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        {t("forms.dsgvo")}
+                      </a>
                     </span>
                   }
                 />

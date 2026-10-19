@@ -8,8 +8,8 @@
     "slogan3": "Verimli"
   },
   "alert": {
-    "short": "8 Agustos 2026 - 24 Agustos 2026 tarihleri arasında büromuz yıllık izin dolayısıyla kapalı olacaktır.",
-    "details": "Bu süre zarfında bize WhatsApp ve e-posta üzerinden ulaşabilirsiniz. Soru ve taleplerinizi mümkün olan en kısa sürede yanıtlamaya çalışacağız. Personel kaydı ve diğer işlemlerinizi web sitemiz üzerinden yapmaya devam edebilirsiniz. Anlayışınız için teşekkür ederiz."
+    "short": "Büromuz 8–24 Ağustos 2026 tarihleri arasında yıllık izin nedeniyle kapalıdır.",
+    "details": "Bu süre içinde bize WhatsApp ve e-posta üzerinden ulaşabilirsiniz; sorularınızı en kısa sürede yanıtlayacağız. Personel giriş ve çıkış bildirimlerinizi web sitemiz üzerinden göndermeye devam edebilirsiniz. Anlayışınız için teşekkür ederiz."
   },
   "footer": {
     "company": "KRC",
@@ -19,37 +19,37 @@
     "phone": "+43 660 174 39 00",
     "email": "office@krc-buchhaltung.at",
     "hours": "Çalışma saatleri",
-    "hoursMonThu": "Pazartesi-Perşembe: 09:00-15:00",
+    "hoursMonThu": "Pazartesi–Perşembe: 09:00–15:00",
     "hoursFri": "Cuma: Kapalı",
-    "hoursByAppointment": "veya randevu ile",
+    "hoursByAppointment": "randevu ile",
     "copyright": "© Telif Hakkı - KRC Buchhaltung",
     "privacy": "Gizlilik Politikası"
   },
   "navigation": {
     "forms": "Formlar",
-    "registration": "Kayıt",
-    "deregistration": "Kaydı Silme",
+    "registration": "İşe giriş",
+    "deregistration": "İşten çıkış",
     "change": "Değişiklik",
     "cancellation": "İptal",
     "overview": "Genel bakış",
     "group": "Bildirimler",
     "contact": "İletişim",
     "menu": "Menü",
-    "website": "Web sitesi"
+    "website": "Web sitesine dön"
   },
   "forms": {
-    "registration": "Kayıt Formu",
-    "deregistration": "Kaydı Silme Formu",
+    "registration": "İşe Giriş Formu",
+    "deregistration": "İşten Çıkış Formu",
     "change": "Değişiklik Formu",
     "cancellation": "İptal Formu",
-    "companyData": "Şirket Verileri / İşveren",
-    "employeeData": "Çalışan - İşçi Verileri",
+    "companyData": "Şirket Bilgileri / İşveren",
+    "employeeData": "Çalışan Bilgileri",
     "employer": "İşveren",
     "workAddress": "İş Yeri Adresi",
     "email": "Şirket E-postası",
-    "firstNameEmployee": "Adı (Çalışan)",
-    "lastNameEmployee": "Soyadı (Çalışan)",
-    "insuranceNumber": "Sigorta Numarası (SVNR)",
+    "firstNameEmployee": "Çalışanın Adı",
+    "lastNameEmployee": "Çalışanın Soyadı",
+    "insuranceNumber": "Sosyal Sigorta Numarası (SVNR)",
     "birthDate": "Doğum Tarihi",
     "maritalStatus": "Medeni Durum",
     "gender": "Cinsiyet",
@@ -58,9 +58,9 @@
     "city": "Şehir",
     "citizenship": "Vatandaşlık",
     "iban": "IBAN",
-    "registrationDate": "Kayıt Tarihi (1. Çalışma Günü)",
-    "jobDescription": "Meslek",
-    "workingHours": "Çalışma Saati (Saat/Hafta)",
+    "registrationDate": "Giriş Tarihi (İlk Çalışma Günü)",
+    "jobDescription": "Görevi",
+    "workingHours": "Çalışma Süresi (Saat/Hafta)",
     "group": "Grup",
     "insuranceType": "Sigorta Türü",
     "minWage": "Asgari Ücret",
@@ -68,61 +68,61 @@
     "maritalSingle": "Bekar",
     "maritalMarried": "Evli",
     "maritalOther": "Diğer",
-    "none": "Seçim Yapınız",
+    "none": "Seçiniz",
     "genderFemale": "Kadın",
     "genderMale": "Erkek",
     "genderOther": "Diğer",
-    "employee": "Memur",
-    "worker": "İşçi",
-    "deregistrationDate": "Kaydı Silme Tarihi (Son Çalışma Günü)",
-    "remainingHolidays": "Kalan İzin Var mı?",
+    "employee": "Beyaz yaka (Angestellte/r)",
+    "worker": "Mavi yaka (Arbeiter/in)",
+    "deregistrationDate": "Çıkış Tarihi (Son Çalışma Günü)",
+    "remainingHolidays": "Kullanılmamış izin var mı?",
     "yes": "Evet",
     "no": "Hayır",
-    "remainingHolidaysNote": "(Lütfen notlarda yazın)",
+    "remainingHolidaysNote": "(Lütfen notlar alanına yazın)",
     "terminationType": "Fesih Türü",
     "notes": "Notlar",
-    "confirmation": "Aşağıdaki madde ile uyum sağlıyorum:",
-    "dsvgo": "KVKK (Kişisel Verilerin Korunması Kanunu)",
+    "confirmation": "Okudum ve kabul ediyorum:",
+    "dsgvo": "Gizlilik Politikası (DSGVO)",
     "send": "Gönder",
-    "cancellationType": "İptal",
-    "cancellationRegistration": "Kayıt",
-    "cancellationDeregistration": "Kaydı Silme",
-    "messageSentDate": "Gönderilen Mesajın Tarihi",
+    "cancellationType": "İptal edilecek bildirim",
+    "cancellationRegistration": "İşe giriş bildirimi",
+    "cancellationDeregistration": "İşten çıkış bildirimi",
+    "messageSentDate": "Bildirimin gönderildiği tarih",
     "placeholder": "Örn. Taksi Şoförü",
-    "experience": "Önceki Yıllar Deneyimi",
+    "experience": "Mesleki deneyim (yıl)",
     "apprentice": "Çırak (Lehrling)",
     "fullyInsured": "Tam Sigortalı",
-    "marginallyEmployed": "Kısmi Sigortalı (Geringfügig)",
+    "marginallyEmployed": "Geringfügig (düşük ücretli)",
     "manualInput": "Manuel Giriş",
-    "salaryManual": "Manuel Maaş Girişi (Brüt)",
+    "salaryManual": "Brüt maaş (manuel giriş)",
     "eCard": "E-Card",
     "meldezettel": "İkametgah (Meldezettel)",
     "passport": "Pasaport",
-    "changePurpose": "Değişiklik Amacı",
+    "changePurpose": "Ne değişiyor?",
     "changePurposePlaceholder": "Lütfen hangi bilgileri değiştirmek istediğinizi açıklayın",
-    "registrationIntro": "Yeni çalışanı kaydedin. Kayıt ilk iş gününden önce bize ulaşmalıdır.",
-    "deregistrationIntro": "Çalışanın çıkışını bildirin. Lütfen son iş gününden sonra 7 gün içinde gönderin.",
-    "changeIntro": "Mevcut bir çalışanın maaş, adres veya çalışma saati değişikliklerini bildirin.",
-    "cancellationIntro": "Gönderilmiş bir giriş veya çıkış bildirimini geri çekin.",
+    "registrationIntro": "Yeni çalışanınızın işe giriş bildirimini yapın. Bildirim, ilk iş gününden önce bize ulaşmış olmalıdır.",
+    "deregistrationIntro": "Çalışanınızın işten çıkış bildirimini yapın. Lütfen son iş gününden itibaren 7 gün içinde gönderin.",
+    "changeIntro": "Mevcut bir çalışanınızın maaş, adres veya çalışma süresindeki değişiklikleri bildirin.",
+    "cancellationIntro": "Gönderdiğiniz bir işe giriş veya işten çıkış bildirimini geri çekin.",
     "documents": "Belgeler",
     "sending": "Gönderiliyor …"
   },
   "errors": {
-    "missingInput": "Eksik Giriş!",
-    "fieldRequired": "gereklidir"
+    "missingInput": "Eksik bilgi!",
+    "fieldRequired": "Zorunlu alan:"
   },
   "privacy": {
-    "title": "GİZLİLİK POLİTİKASI",
+    "title": "GİZLİLİK BEYANI",
     "contactForm": "İletişim Formu",
-    "contactFormText": "Web sitesinde bulunan form aracılığıyla veya e-posta yoluyla bizimle iletişime geçtiğinizde, sağladığınız veriler talebinizin işlenmesi ve takip soruları için altı ay boyunca bizde saklanır. Bu verileri rızanız olmaksızın üçüncü taraflara vermeyiz.",
+    "contactFormText": "Web sitesindeki form veya e-posta yoluyla bizimle iletişime geçtiğinizde, verdiğiniz bilgiler talebinizin işlenmesi ve olası ek sorular için altı ay süreyle saklanır. Bu bilgileri izniniz olmadan kimseyle paylaşmayız.",
     "registration": "Kayıt",
-    "registrationText": "Kayıt sırasında kullanıcının e-posta adresi ve şifresi saklanır. Daha sonra bir satın alma gerçekleştirilirse, e-posta adresi satın alma işlemi sırasında elde edilen verilerle bağlanır. Sağladığınız veriler kullanıcı hesabının kurulması için gereklidir. Veri işleme, kullanıcı hesabının varlığı süresince gerçekleştirilir. Kullanıcı hesabı silindiğinde, e-posta adresi ve şifre de silinir.",
+    "registrationText": "Kayıt sırasında kullanıcının e-posta adresi ve şifresi saklanır. Daha sonra bir satın alma yapılırsa, e-posta adresi bu satın almaya ait verilerle ilişkilendirilir. Verdiğiniz bilgiler kullanıcı hesabının oluşturulması için gereklidir ve hesap var olduğu sürece işlenir. Kullanıcı hesabı silindiğinde e-posta adresi ve şifre de silinir.",
     "itSecurity": "BT Güvenliği",
-    "itSecurityText": "Bu web sitesini ziyaret ettiğinizde, IP adresi ve web sitesine erişimle ilgili diğer veriler içeren günlük dosyalar (ör. Tarih, saat, UserAgent, Referer) saklanır. Veri işleme, zaman sınırlaması içinde (azami 30 gün) yapılır ve yalnızca DDOS saldırılarından veya web sitesinin işlevselliğine veya arkasındaki veritabanı sistemlerine karşı diğer müdahalelere karşı koruma için yapılır.",
+    "itSecurityText": "Bu web sitesini ziyaret ettiğinizde ayrıca IP adresinizi ve erişimle ilgili diğer bilgileri (ör. tarih, saat, tarayıcı bilgisi, yönlendiren sayfa) içeren log dosyaları kaydedilir. Bu veriler en fazla 30 gün saklanır ve yalnızca DDoS saldırılarına veya web sitesinin ve arkasındaki veritabanı sistemlerinin işleyişine yönelik diğer müdahalelere karşı korunmak amacıyla işlenir.",
     "legalBasis": "Veri İşlemenin Yasal Dayanağı:",
-    "legalBasisText": "Web sitesinde veriler yalnızca yasal hükümlere (GDPR, TKG 2003) dayanarak işlenir. Veri işleme (web mağazası, ürün puanlamaları, rezervasyon aracı ve kullanıcı hesabı) GDPR'nin 6. Madde 1. Bent b) (sözleşmenin yerine getirilmesi) dayanarak gerçekleştirilir. Analiz araçlarının kullanılması durumunda, veri kullanımı GDPR'nin 6. Madde 1. Bent f) (meşru menfaat) dayanarak gerçekleştirilir. Veri kullanımındaki meşru menfaat, web sitesinin iyileştirilmesi ve çevrimiçi reklam başarısının ölçülmesidir. BT veri güvenliği önlemleri de GDPR'nin 6. Madde 1. Bent f) (meşru menfaat) dayanarak uygulanır. Veri kullanımındaki meşru menfaat, kendi BT sistemlerinin korunmasıdır. Sosyal medya eklentilerinin kullanımı yalnızca rıza verildikten sonra gerçekleştirilir. Bu nedenle yasal dayanak GDPR'nin 6. Madde 1. Bent a) (rıza) dir. Rıza, her web sitesi ziyaretinde yeniden verilmelidir.",
-    "yourRights": "Sizin Haklarınız",
-    "yourRightsText": "Sizin, temel olarak erişim, düzeltme, silme, işleme kısıtlaması, veri taşınabilirliği, geri çekilme ve itiraz haklarınız vardır. Verilerinizin işlenmesinin veri koruma yasalarını ihlal ettiğine veya veri koruma haklarınızın başka bir şekilde ihlal edildiğine inanıyorsanız, denetleme makamına şikayette bulunabilirsiniz. Avusturya'da bu, veri koruma makamıdır."
+    "legalBasisText": "Web sitesinde veriler yalnızca yasal düzenlemelere (DSGVO/GDPR, TKG 2003) dayanılarak işlenir. Veri işleme (web mağazası, ürün değerlendirmeleri, rezervasyon aracı ve kullanıcı hesabı) DSGVO Madde 6 fıkra 1 bent b (sözleşmenin ifası) uyarınca yapılır. Analiz araçları kullanıldığında veriler DSGVO Madde 6 fıkra 1 bent f (meşru menfaat) uyarınca işlenir; buradaki meşru menfaat, web sitesinin iyileştirilmesi ve çevrimiçi reklamların başarısının ölçülmesidir. BT güvenlik önlemleri de DSGVO Madde 6 fıkra 1 bent f (meşru menfaat) uyarınca uygulanır; buradaki meşru menfaat, kendi BT sistemlerimizin korunmasıdır. Sosyal medya eklentileri yalnızca onayınız alındıktan sonra kullanılır; bunun yasal dayanağı DSGVO Madde 6 fıkra 1 bent a’dır (rıza). Onay her web sitesi ziyaretinde yeniden verilmelidir.",
+    "yourRights": "Haklarınız",
+    "yourRightsText": "Temel olarak bilgi alma, düzeltme, silme, işlemenin kısıtlanması, veri taşınabilirliği, rızayı geri alma ve itiraz haklarına sahipsiniz. Verilerinizin işlenmesinin veri koruma mevzuatına aykırı olduğunu veya veri koruma haklarınızın başka bir şekilde ihlal edildiğini düşünüyorsanız, denetim makamına şikâyette bulunabilirsiniz. Avusturya’da bu makam Veri Koruma Kurumu’dur (Datenschutzbehörde)."
   },
   "home": {
     "title": "Personel bildirimleri",
@@ -139,23 +139,23 @@
     },
     "deregistration": {
       "title": "Çalışan işten ayrılıyor",
-      "text": "Son iş günü, fesih türü ve kalan izin ile çıkış bildirimi.",
-      "deadline": "Son iş gününden sonra 7 gün içinde",
+      "text": "Son iş günü, fesih türü ve kullanılmamış izin bilgisiyle işten çıkış bildirimi.",
+      "deadline": "Son iş gününden itibaren 7 gün içinde",
       "needs": "Son iş günü, fesih türü"
     },
     "change": {
-      "title": "Maaş, adres veya çalışma saati değişiyor",
+      "title": "Maaş, adres veya çalışma süresi değişiyor",
       "text": "Mevcut çalışanlar için değişiklik bildirimi.",
-      "deadline": "Değişiklikten sonra 7 gün içinde",
+      "deadline": "Değişiklikten itibaren 7 gün içinde",
       "needs": "Yeni bilgiler ve geçerlilik tarihi"
     },
     "cancellation": {
       "title": "Bildirimi geri çek",
-      "text": "Gönderilmiş bir giriş veya çıkış bildirimini iptal edin.",
+      "text": "Gönderdiğiniz bir işe giriş veya işten çıkış bildirimini iptal edin.",
       "deadline": "Mümkün olan en kısa sürede",
-      "needs": "Gönderilen bildirimin tarihi"
+      "needs": "Bildirimin gönderildiği tarih"
     },
-    "contactLead": "Bir bildirimle ilgili sorunuz mu var? Bizi arayın veya yazın.",
+    "contactLead": "Bir bildirimle ilgili sorunuz mu var? Bizi arayın ya da bize yazın.",
     "map": "Google Haritalar’da aç"
   },
   "landing": {
@@ -171,19 +171,19 @@
     "services": [
       [
         "Cari muhasebe",
-        "Belgelerin işlenmesi, hesapların tutulması, her ay düzenli kapanış."
+        "Belgelerinizi işliyor, hesaplarınızı tutuyor, her ayı eksiksiz kapatıyoruz."
       ],
       [
         "Bordro",
-        "Çalışanlarınız için maaşlar, bordro belgeleri ve vergiler."
+        "Çalışanlarınızın ücret ve maaşları, bordroları ve yasal kesintileri."
       ],
       [
         "Personel bildirimleri",
-        "ÖGK’ya giriş, çıkış ve değişiklik bildirimleri, portalımız üzerinden online."
+        "ÖGK’ya işe giriş, işten çıkış ve değişiklik bildirimleri – portalımız üzerinden online."
       ],
       [
         "KDV beyannamesi",
-        "Vergi dairesine zamanında, aylık veya üç aylık beyanname."
+        "Vergi dairesine aylık veya üç aylık KDV ön beyannamesi, zamanında."
       ],
       [
         "Yıl sonu kapanışı",
@@ -191,12 +191,12 @@
       ],
       [
         "Türkçe danışmanlık",
-        "Muhasebe ve personelle ilgili tüm sorularınız kendi dilinizde."
+        "Muhasebe ve personelle ilgili tüm sorularınız için kendi dilinizde destek."
       ]
     ],
     "bandAlt": "İki kişi bir klasördeki belgeleri birlikte inceliyor",
     "reportsTitle": "Online personel bildirimleri",
-    "reportsText": "Yeni çalışan, işten çıkış, yeni maaş: formu siz doldurun, ÖGK bildirimini ve bordroya aktarımı biz yapalım.",
+    "reportsText": "Yeni çalışan, işten çıkış, yeni maaş: Formu siz doldurun; ÖGK bildirimini biz yapalım ve her şeyi bordroya işleyelim.",
     "calcTitle": "Süreyi hesapla",
     "calcType": "Bildirim",
     "calcDate": {
@@ -206,7 +206,7 @@
     },
     "calcEvent": "Tarih",
     "calcDeadline": "ÖGK süresi",
-    "calcBefore": "işe başlamadan önce,",
+    "calcBefore": "işe başlamadan önce, en geç",
     "calcUntil": "en geç",
     "calcPick": "Tarih seçin",
     "calcTo": "Forma git",
@@ -219,14 +219,14 @@
       "cari muhasebe",
       " ve ",
       "bordro",
-      " konularında hizmet veriyor, asıl işinize odaklanabilmeniz için yükünüzü alıyoruz. ",
+      " konularında hizmet veriyor, asıl işinize odaklanabilmeniz için bu yükü üzerinizden alıyoruz. ",
       "Almanca ve Türkçe",
-      " olarak, açık ve anlaşılır şekilde danışmanlık yapıyoruz. Yeni çalışanları, işten çıkışları ve maaş değişikliklerini bize ",
+      " olarak, açık ve anlaşılır biçimde danışmanlık yapıyoruz. Yeni çalışanları, işten çıkışları ve maaş değişikliklerini bize ",
       "günün her saatinde online",
       " bildirebilirsiniz; ÖGK bildirimini biz hallederiz. ",
       "Pazartesiden perşembeye",
-      " kadar sizi büroda ağırlıyoruz, cuma günleri randevu ile. ",
-      "Bizi arayın veya uğrayın."
+      " kadar sizi büromuzda ağırlıyoruz, cuma günleri ise randevuyla. ",
+      "Bizi arayın ya da uğrayın."
     ],
     "photoAlt": "Defter ve raporlar üzerinde kalem ve hesap makinesi tutan eller",
     "contactTitle": "İletişim ve ulaşım",
@@ -234,7 +234,7 @@
     "write": "Bize yazın",
     "footerInvite": "Muhasebenizle ilgili sorunuz mu var? Buradayız.",
     "top": "Yukarı",
-    "servicesLead": "Cari muhasebeden yıl sonu kapanışına kadar her şey tek elden; şahıs şirketleri için de, şirketler için de.",
+    "servicesLead": "Cari muhasebeden yıl sonu kapanışına kadar her şey tek elden – hem şahıs şirketleri hem de ortaklıklar için.",
     "calcFormat": "GG.AA.YYYY",
     "calcOpen": "Takvimi aç"
   }

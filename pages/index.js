@@ -41,7 +41,9 @@ const textToIso = (text) => {
   if (!m) return "";
   const [d, mo, y] = [Number(m[1]), Number(m[2]), Number(m[3])];
   const date = new Date(y, mo - 1, d);
-  return date.getDate() === d && date.getMonth() === mo - 1 ? `${m[3]}-${m[2]}-${m[1]}` : "";
+  return date.getDate() === d && date.getMonth() === mo - 1
+    ? `${m[3]}-${m[2]}-${m[1]}`
+    : "";
 };
 // Digits only, dots inserted while typing: "1910" -> "19.10".
 const maskDate = (value) =>
@@ -69,7 +71,7 @@ const DeadlineSlip = () => {
     pick(
       [now.getFullYear(), now.getMonth() + 1, now.getDate()]
         .map((n) => String(n).padStart(2, "0"))
-        .join("-")
+        .join("-"),
     );
   }, []);
 
@@ -143,7 +145,8 @@ const DeadlineSlip = () => {
       <Link href={href} className={css.slip_total}>
         <span>{t(`forms.${kind}`)}</span>
         <span>
-          {t("landing.calcTo")} <ArrowForward sx={{ fontSize: 18, verticalAlign: "-3px" }} />
+          {t("landing.calcTo")}{" "}
+          <ArrowForward sx={{ fontSize: 18, verticalAlign: "-3px" }} />
         </span>
       </Link>
     </div>
@@ -168,7 +171,7 @@ export default function Landing() {
             io.unobserve(e.target);
           }
         }),
-      { rootMargin: "0px 0px -8% 0px" }
+      { rootMargin: "0px 0px -8% 0px" },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -187,7 +190,13 @@ export default function Landing() {
       <header className={css.hero}>
         <div className={css.hero_top}>
           <div className={css.hero_intro}>
-            <img src="/assets/logo-light.svg" alt="KRC" width={72} height={54} className={css.logo} />
+            <img
+              src="/assets/logo-light.svg"
+              alt="KRC"
+              width={72}
+              height={54}
+              className={css.logo}
+            />
             <p>{t("landing.lead")}</p>
             <a href="#meldungen" className={css.button_light}>
               {t("landing.cta")}
@@ -227,7 +236,11 @@ export default function Landing() {
       </header>
 
       <main>
-        <section id="leistungen" className={css.services} aria-labelledby="services-title">
+        <section
+          id="leistungen"
+          className={css.services}
+          aria-labelledby="services-title"
+        >
           <div className={css.services_intro}>
             <h2 id="services-title" data-reveal>
               {t("landing.servicesTitle")}
@@ -256,7 +269,11 @@ export default function Landing() {
           />
         </figure>
 
-        <section id="meldungen" className={css.reports} aria-labelledby="reports-title">
+        <section
+          id="meldungen"
+          className={css.reports}
+          aria-labelledby="reports-title"
+        >
           <div className={css.reports_text}>
             <h2 id="reports-title" data-reveal>
               {t("landing.reportsTitle")}
@@ -299,7 +316,11 @@ export default function Landing() {
           </p>
         </section>
 
-        <section id="kontakt" className={css.contact} aria-labelledby="contact-title">
+        <section
+          id="kontakt"
+          className={css.contact}
+          aria-labelledby="contact-title"
+        >
           <h2 id="contact-title" data-reveal>
             {t("landing.contactTitle")}
           </h2>
@@ -346,19 +367,27 @@ export default function Landing() {
             <br />
             {t("footer.hoursFri")}, {t("footer.hoursByAppointment")}
           </p>
-          <a href="#top" onClick={(e) => (e.preventDefault(), window.scrollTo({ top: 0, behavior: "smooth" }))}>
+          <a
+            href="#top"
+            onClick={(e) => (
+              e.preventDefault(),
+              window.scrollTo({ top: 0, behavior: "smooth" })
+            )}
+          >
             {t("landing.top")}
           </a>
         </div>
         <div className={css.footer_main}>
           <p>{t("landing.footerInvite")}</p>
           <a href={`mailto:${MAIL}`} className={css.footer_mail}>
-            office<wbr />@krc-buchhaltung.at
+            office
+            <wbr />
+            @krc-buchhaltung.at
           </a>
         </div>
         <div className={css.footer_meta}>
           <span>
-            <Link href="/dsvgo">{t("footer.privacy")}</Link>
+            <Link href="/dsgvo">{t("footer.privacy")}</Link>
             <Link href="/login">{t("landing.navLogin")}</Link>
           </span>
           <span>{t("footer.copyright")}</span>

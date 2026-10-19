@@ -22,13 +22,13 @@ import DateInput from "@/components/form-components/DateInput";
 import useFormCalls from "@/hooks/useFormCalls";
 import useFormUtilities from "@/hooks/useFormUtilities";
 import ValidationWarningModal from "@/components/form-components/ValidationWarningModal";
-import SectionTitle, { FormHeader } from "@/components/form-components/SectionTitle";
+import SectionTitle, {
+  FormHeader,
+} from "@/components/form-components/SectionTitle";
 
 // LOGIN AUTH
 import ProtectedRoute from "@/components/ProtectedRoute";
 import useFormPrefill from "@/hooks/useFormPrefill";
-
-   
 
 const requiredFields = [
   { fieldName: "employer", fieldCaption: "forms.employer" },
@@ -39,7 +39,7 @@ const requiredFields = [
   { fieldName: "insuranceNumberDN", fieldCaption: "forms.insuranceNumber" },
   { fieldName: "cancellationType", fieldCaption: "forms.cancellationType" },
   { fieldName: "mailSentAt", fieldCaption: "forms.messageSentDate" },
-  { fieldName: "confirmation", fieldCaption: "forms.dsvgo" },
+  { fieldName: "confirmation", fieldCaption: "forms.dsgvo" },
 ];
 
 const Storno = () => {
@@ -58,15 +58,15 @@ const Storno = () => {
   } = useFormUtilities();
 
   //preFill
-    useFormPrefill(setFormData);
-    
+  useFormPrefill(setFormData);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     // Übersetze die requiredFields für die Warnmeldung dynamisch
-    const localizedRequiredFields = requiredFields.map(f => ({
+    const localizedRequiredFields = requiredFields.map((f) => ({
       ...f,
-      fieldCaption: t(f.fieldCaption)
+      fieldCaption: t(f.fieldCaption),
     }));
 
     const isValidationOk = validateForm(localizedRequiredFields, formData);
@@ -184,7 +184,10 @@ const Storno = () => {
                   label={t("forms.cancellationType")}
                 >
                   <MenuItem value={""}>
-                    <Typography component="em" sx={{ fontSize: typographyFontSize }}>
+                    <Typography
+                      component="em"
+                      sx={{ fontSize: typographyFontSize }}
+                    >
                       {t("forms.none")}
                     </Typography>
                   </MenuItem>
@@ -234,7 +237,11 @@ const Storno = () => {
                 }
                 label={
                   <span style={{ fontSize: typographyFontSize }}>
-                    {t("forms.confirmation")} <a href="/dsvgo"> {t("forms.dsvgo")}</a>
+                    {t("forms.confirmation")}{" "}
+                    <a href="/dsgvo" target="_blank" rel="noopener noreferrer">
+                      {" "}
+                      {t("forms.dsgvo")}
+                    </a>
                   </span>
                 }
               />

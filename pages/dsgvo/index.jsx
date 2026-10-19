@@ -2,9 +2,15 @@ import css from "@/styles/forms.module.css";
 import { FormHeader } from "@/components/form-components/SectionTitle";
 import { useTranslation } from "react-i18next";
 
-const SECTIONS = ["contactForm", "registration", "itSecurity", "legalBasis", "yourRights"];
+const SECTIONS = [
+  "contactForm",
+  "registration",
+  "itSecurity",
+  "legalBasis",
+  "yourRights",
+];
 
-const Dsvgo = () => {
+const Dsgvo = () => {
   const { t } = useTranslation();
 
   return (
@@ -22,4 +28,4 @@ const Dsvgo = () => {
   );
 };
 
-export default Dsvgo;
+export default Dsgvo;

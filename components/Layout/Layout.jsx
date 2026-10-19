@@ -37,7 +37,8 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     const savedLang = localStorage.getItem("krc_language");
-    if (savedLang && i18n.language !== savedLang) i18n.changeLanguage(savedLang);
+    if (savedLang && i18n.language !== savedLang)
+      i18n.changeLanguage(savedLang);
   }, [i18n]);
 
   useEffect(() => {
@@ -95,7 +96,9 @@ const Layout = ({ children }) => {
         <nav className={css.nav} aria-label={t("navigation.group")}>
           {item("/portal", t("navigation.overview"), HomeOutlined)}
           <p className={css.nav_group}>{t("navigation.group")}</p>
-          {NAV.map(({ href, key, Icon }) => item(href, t(`navigation.${key}`), Icon))}
+          {NAV.map(({ href, key, Icon }) =>
+            item(href, t(`navigation.${key}`), Icon),
+          )}
         </nav>
 
         <div className={css.sidebar_foot}>
@@ -109,7 +112,7 @@ const Layout = ({ children }) => {
           </p>
           <div className={css.foot_row}>
             <LangSwitch tone="dark" />
-            <Link href="/dsvgo" className={css.muted}>
+            <Link href="/dsgvo" className={css.muted}>
               {t("footer.privacy")}
             </Link>
           </div>

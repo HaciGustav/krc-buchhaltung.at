@@ -36,7 +36,7 @@ const requiredFields = [
   { fieldName: "workingHours", fieldCaption: "forms.workingHours" },
   { fieldName: "gruppe", fieldCaption: "forms.group" },
   { fieldName: "insuranceType", fieldCaption: "forms.insuranceType" },
-  { fieldName: "confirmation", fieldCaption: "forms.dsvgo" },
+  { fieldName: "confirmation", fieldCaption: "forms.dsgvo" },
 ];
 
 const NewRegistry = () => {
@@ -507,7 +507,9 @@ const NewRegistry = () => {
                 label={
                   <span style={{ fontSize: typographyFontSize }}>
                     {t("forms.confirmation")}{" "}
-                    <a href="/dsvgo">{t("forms.dsvgo")}</a>
+                    <a href="/dsgvo" target="_blank" rel="noopener noreferrer">
+                      {t("forms.dsgvo")}
+                    </a>
                   </span>
                 }
               />
