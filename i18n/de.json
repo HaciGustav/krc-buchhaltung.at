@@ -34,7 +34,8 @@
     "overview": "Übersicht",
     "group": "Meldungen",
     "contact": "Kontakt",
-    "menu": "Menü"
+    "menu": "Menü",
+    "website": "Zur Website"
   },
   "forms": {
     "registration": "Anmeldeformular",
@@ -156,5 +157,91 @@
     },
     "contactLead": "Fragen zu einer Meldung? Rufen Sie uns an oder schreiben Sie uns.",
     "map": "Auf Google Maps öffnen"
+  },
+  "landing": {
+    "name": "KRC Buchhaltung",
+    "lead": "Buchhaltungskanzlei in Wien-Favoriten. Wir führen Ihre Buchhaltung und Lohnverrechnung – auf Deutsch und auf Türkisch.",
+    "cta": "Personalmeldung senden",
+    "slogan": "Pünktlich. Verlässlich. Effizient.",
+    "navServices": "Leistungen",
+    "navReports": "Meldungen",
+    "navContact": "Kontakt",
+    "navLogin": "Kundenlogin",
+    "servicesTitle": "Unsere Leistungen",
+    "services": [
+      [
+        "Laufende Buchhaltung",
+        "Belege erfassen, Konten führen, jeden Monat sauber abgeschlossen."
+      ],
+      [
+        "Lohnverrechnung",
+        "Löhne und Gehälter, Lohnzettel und Abgaben für Ihre Dienstnehmer."
+      ],
+      [
+        "Personalmeldungen",
+        "An-, Ab- und Änderungsmeldungen bei der ÖGK, online über unser Portal."
+      ],
+      [
+        "Umsatzsteuer",
+        "Die Voranmeldung fristgerecht beim Finanzamt, monatlich oder quartalsweise."
+      ],
+      [
+        "Jahresabschluss",
+        "Einnahmen-Ausgaben-Rechnung für Einzelunternehmen und kleine Betriebe."
+      ],
+      [
+        "Beratung auf Türkisch",
+        "Alle Fragen zu Buchhaltung und Personal auch in Ihrer Sprache."
+      ]
+    ],
+    "bandAlt": "Zwei Personen gehen gemeinsam Unterlagen in einem Ordner durch",
+    "reportsTitle": "Personalmeldungen online",
+    "reportsText": "Neue Mitarbeiterin, Kündigung, neues Gehalt: Sie füllen das Formular aus, wir melden bei der ÖGK und übernehmen alles in die Lohnverrechnung.",
+    "calcTitle": "Frist berechnen",
+    "calcType": "Meldung",
+    "calcDate": {
+      "registration": "Erster Arbeitstag",
+      "deregistration": "Letzter Arbeitstag",
+      "change": "Tag der Änderung"
+    },
+    "calcEvent": "Stichtag",
+    "calcDeadline": "Frist bei der ÖGK",
+    "calcBefore": "vor Arbeitsbeginn am",
+    "calcUntil": "bis spätestens",
+    "calcPick": "Datum wählen",
+    "calcTo": "Zum Formular",
+    "calcNote": "Senden Sie uns die Meldung bitte einige Tage vor Ablauf der Frist.",
+    "about": [
+      "KRC Buchhaltungskanzlei KG",
+      " ist eine Kanzlei in ",
+      "Wien-Favoriten",
+      ", in der Oberlaaer Straße 191. Wir betreuen kleine und mittlere Betriebe bei der ",
+      "laufenden Buchhaltung",
+      " und der ",
+      "Lohnverrechnung",
+      " und halten ihnen den Rücken frei für das eigentliche Geschäft. Wir beraten ",
+      "auf Deutsch und auf Türkisch",
+      ", direkt und verständlich. Neue Mitarbeiter, Kündigungen und geänderte Gehälter melden Sie uns ",
+      "online, zu jeder Tageszeit",
+      ", und wir kümmern uns um die Meldung an die ÖGK. Von ",
+      "Montag bis Donnerstag",
+      " sind wir persönlich für Sie da, freitags nach Terminvereinbarung. ",
+      "Rufen Sie uns an oder kommen Sie vorbei."
+    ],
+    "photoAlt": "Hände mit Bleistift und Taschenrechner über Notizbuch und Auswertungen",
+    "contactTitle": "Kontakt und Anfahrt",
+    "hoursRow": "Mo–Do 09:00–15:00",
+    "write": "Schreiben Sie uns",
+    "parkCaption": "Kurpark Oberlaa, in der Nachbarschaft der Kanzlei",
+    "ubahnCaption": "U1-Station Oberlaa",
+    "footerInvite": "Fragen zu Ihrer Buchhaltung? Wir sind für Sie da.",
+    "top": "Nach oben",
+    "credits": "Fotos",
+    "rowsSide": [
+      "Route planen",
+      "Favoriten, 10. Bezirk",
+      "Freitag nach Terminvereinbarung",
+      "Jetzt anrufen"
+    ]
   }
 }

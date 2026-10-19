@@ -6,11 +6,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createTheme, ThemeProvider } from "@mui/material";
 
-// Achromatic ledger: chrome in ink, KRC plum only on focus and links.
+// KRC plum carries the brand: sidebar, primary actions, focus.
 const theme = createTheme({
   palette: {
     mode: "light",
-    primary: { main: "#1d1f20" },
+    primary: { main: "#692046", dark: "#55183a" },
     secondary: { main: "#692046" },
     error: { main: "#c4242a" },
     text: { primary: "#111111", secondary: "#5f6368" },
@@ -78,7 +78,7 @@ const theme = createTheme({
       styleOverrides: { label: { fontSize: 14 } },
     },
     MuiCheckbox: {
-      styleOverrides: { root: { "&.Mui-checked": { color: "#1d1f20" } } },
+      styleOverrides: { root: { "&.Mui-checked": { color: "#692046" } } },
     },
     MuiMenuItem: { styleOverrides: { root: { fontSize: 14 } } },
     MuiDialog: {

@@ -34,7 +34,8 @@
     "overview": "Genel bakış",
     "group": "Bildirimler",
     "contact": "İletişim",
-    "menu": "Menü"
+    "menu": "Menü",
+    "website": "Web sitesi"
   },
   "forms": {
     "registration": "Kayıt Formu",
@@ -156,5 +157,91 @@
     },
     "contactLead": "Bir bildirimle ilgili sorunuz mu var? Bizi arayın veya yazın.",
     "map": "Google Haritalar’da aç"
+  },
+  "landing": {
+    "name": "KRC Buchhaltung",
+    "lead": "Viyana-Favoriten’de muhasebe bürosu. Muhasebenizi ve bordronuzu Almanca ve Türkçe olarak yürütüyoruz.",
+    "cta": "Personel bildirimi gönder",
+    "slogan": "Zamanında. Güvenilir. Verimli.",
+    "navServices": "Hizmetler",
+    "navReports": "Bildirimler",
+    "navContact": "İletişim",
+    "navLogin": "Müşteri girişi",
+    "servicesTitle": "Hizmetlerimiz",
+    "services": [
+      [
+        "Cari muhasebe",
+        "Belgelerin işlenmesi, hesapların tutulması, her ay düzenli kapanış."
+      ],
+      [
+        "Bordro",
+        "Çalışanlarınız için maaşlar, bordro belgeleri ve vergiler."
+      ],
+      [
+        "Personel bildirimleri",
+        "ÖGK’ya giriş, çıkış ve değişiklik bildirimleri, portalımız üzerinden online."
+      ],
+      [
+        "KDV beyannamesi",
+        "Vergi dairesine zamanında, aylık veya üç aylık beyanname."
+      ],
+      [
+        "Yıl sonu kapanışı",
+        "Şahıs şirketleri ve küçük işletmeler için gelir-gider hesabı."
+      ],
+      [
+        "Türkçe danışmanlık",
+        "Muhasebe ve personelle ilgili tüm sorularınız kendi dilinizde."
+      ]
+    ],
+    "bandAlt": "İki kişi bir klasördeki belgeleri birlikte inceliyor",
+    "reportsTitle": "Online personel bildirimleri",
+    "reportsText": "Yeni çalışan, işten çıkış, yeni maaş: formu siz doldurun, ÖGK bildirimini ve bordroya aktarımı biz yapalım.",
+    "calcTitle": "Süreyi hesapla",
+    "calcType": "Bildirim",
+    "calcDate": {
+      "registration": "İlk iş günü",
+      "deregistration": "Son iş günü",
+      "change": "Değişiklik tarihi"
+    },
+    "calcEvent": "Tarih",
+    "calcDeadline": "ÖGK süresi",
+    "calcBefore": "işe başlamadan önce,",
+    "calcUntil": "en geç",
+    "calcPick": "Tarih seçin",
+    "calcTo": "Forma git",
+    "calcNote": "Lütfen bildirimi süre dolmadan birkaç gün önce bize gönderin.",
+    "about": [
+      "KRC Buchhaltungskanzlei KG",
+      ", ",
+      "Viyana-Favoriten",
+      "’de, Oberlaaer Straße 191’de bulunan bir muhasebe bürosudur. Küçük ve orta ölçekli işletmelere ",
+      "cari muhasebe",
+      " ve ",
+      "bordro",
+      " konularında hizmet veriyor, asıl işinize odaklanabilmeniz için yükünüzü alıyoruz. ",
+      "Almanca ve Türkçe",
+      " olarak, açık ve anlaşılır şekilde danışmanlık yapıyoruz. Yeni çalışanları, işten çıkışları ve maaş değişikliklerini bize ",
+      "günün her saatinde online",
+      " bildirebilirsiniz; ÖGK bildirimini biz hallederiz. ",
+      "Pazartesiden perşembeye",
+      " kadar sizi büroda ağırlıyoruz, cuma günleri randevu ile. ",
+      "Bizi arayın veya uğrayın."
+    ],
+    "photoAlt": "Defter ve raporlar üzerinde kalem ve hesap makinesi tutan eller",
+    "contactTitle": "İletişim ve ulaşım",
+    "hoursRow": "Pzt–Prş 09:00–15:00",
+    "write": "Bize yazın",
+    "parkCaption": "Büronun yakınındaki Kurpark Oberlaa",
+    "ubahnCaption": "U1 Oberlaa istasyonu",
+    "footerInvite": "Muhasebenizle ilgili sorunuz mu var? Buradayız.",
+    "top": "Yukarı",
+    "credits": "Fotoğraflar",
+    "rowsSide": [
+      "Yol tarifi al",
+      "Favoriten, 10. bölge",
+      "Cuma günleri randevu ile",
+      "Hemen arayın"
+    ]
   }
 }

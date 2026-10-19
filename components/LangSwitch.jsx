@@ -2,7 +2,9 @@ import { useTranslation } from "react-i18next";
 
 const LANGS = ["de", "tr"];
 
-const LangSwitch = () => {
+// tone="dark": for use on a plum ground.
+const LangSwitch = ({ tone }) => {
+  const dark = tone === "dark";
   const { i18n } = useTranslation();
 
   const change = (lang) => {
@@ -29,8 +31,8 @@ const LangSwitch = () => {
               fontSize: 13,
               fontWeight: active ? 500 : 400,
               cursor: "pointer",
-              background: active ? "var(--active)" : "transparent",
-              color: active ? "var(--text)" : "var(--muted)",
+              background: active ? (dark ? "rgba(255,255,255,0.16)" : "var(--active)") : "transparent",
+              color: dark ? "#fff" : active ? "var(--text)" : "var(--muted)",
             }}
           >
             {lang.toUpperCase()}

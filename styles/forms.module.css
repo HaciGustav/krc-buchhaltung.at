@@ -38,15 +38,15 @@
   flex-direction: column;
   gap: 16px;
   padding: 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--plum-50);
+  border: 1px solid var(--plum-100);
   border-radius: 8px;
   font-size: 14px;
   line-height: 1.5;
 }
 .form_aside dt {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--plum-400);
 }
 .form_aside a {
   color: var(--text);
@@ -86,6 +86,7 @@
 .section_title {
   font-size: 16px;
   font-weight: 500;
+  color: var(--plum);
   line-height: 1.4;
   padding-bottom: 4px;
 }

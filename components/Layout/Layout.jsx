@@ -59,6 +59,16 @@ const Layout = ({ children }) => {
     </Link>
   );
 
+  // The public website brings its own layout; the portal pages share the shell.
+  if (router.pathname === "/") {
+    return (
+      <>
+        <CssBaseline />
+        {children}
+      </>
+    );
+  }
+
   return (
     <div className={css.shell}>
       <CssBaseline />
@@ -83,7 +93,7 @@ const Layout = ({ children }) => {
         </div>
 
         <nav className={css.nav} aria-label={t("navigation.group")}>
-          {item("/", t("navigation.overview"), HomeOutlined)}
+          {item("/portal", t("navigation.overview"), HomeOutlined)}
           <p className={css.nav_group}>{t("navigation.group")}</p>
           {NAV.map(({ href, key, Icon }) => item(href, t(`navigation.${key}`), Icon))}
         </nav>
@@ -98,7 +108,7 @@ const Layout = ({ children }) => {
             {t("footer.hoursFri")}
           </p>
           <div className={css.foot_row}>
-            <LangSwitch />
+            <LangSwitch tone="dark" />
             <Link href="/dsvgo" className={css.muted}>
               {t("footer.privacy")}
             </Link>
