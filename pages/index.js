@@ -165,12 +165,17 @@ export default function Landing() {
 
       <main>
         <section id="leistungen" className={css.services} aria-labelledby="services-title">
-          <h2 id="services-title" className={css.services_title} data-reveal>
-            {t("landing.servicesTitle")}
-          </h2>
-          <ul>
+          <div className={css.services_intro}>
+            <h2 id="services-title" data-reveal>
+              {t("landing.servicesTitle")}
+            </h2>
+            <p data-reveal style={{ "--i": 1 }}>
+              {t("landing.servicesLead")}
+            </p>
+          </div>
+          <ul className={css.services_list}>
             {services.map(([name, text], i) => (
-              <li key={name} data-reveal style={{ "--i": i }}>
+              <li key={name} data-reveal style={{ "--i": i % 2 }}>
                 <h3>{name}</h3>
                 <p>{text}</p>
               </li>
@@ -179,15 +184,13 @@ export default function Landing() {
         </section>
 
         <figure className={css.band}>
-          <div>
-            <img
+          <img
             src="/assets/header2.jpg"
             alt={t("landing.bandAlt")}
             width={1920}
             height={1280}
             loading="lazy"
           />
-          </div>
         </figure>
 
         <section id="meldungen" className={css.reports} aria-labelledby="reports-title">
@@ -258,34 +261,12 @@ export default function Landing() {
                 </a>
               </li>
             </ul>
-            <div className={css.place}>
-              <figure data-reveal>
-                <img
-                  src="/assets/found/kurpark-oberlaa-wien.jpg"
-                  alt={t("landing.parkCaption")}
-                  width={1920}
-                  height={1078}
-                  loading="lazy"
-                />
-                <figcaption>{t("landing.parkCaption")}</figcaption>
-              </figure>
-              <figure data-reveal style={{ "--i": 1 }}>
-                <img
-                  src="/assets/found/u-bahn-station-oberlaa-03.jpg"
-                  alt={t("landing.ubahnCaption")}
-                  width={1920}
-                  height={1280}
-                  loading="lazy"
-                />
-                <figcaption>{t("landing.ubahnCaption")}</figcaption>
-              </figure>
-              <figure className={css.map} data-reveal style={{ "--i": 2 }}>
-                <MapWithNoSSR height="100%" />
-                <figcaption>
-                  {t("footer.companyFull")}, {t("footer.address")}
-                </figcaption>
-              </figure>
-            </div>
+            <figure className={css.map} data-reveal style={{ "--i": 1 }}>
+              <MapWithNoSSR height="100%" />
+              <figcaption>
+                {t("footer.companyFull")}, {t("footer.address")}
+              </figcaption>
+            </figure>
           </div>
         </section>
       </main>
@@ -316,12 +297,6 @@ export default function Landing() {
           <span>
             <Link href="/dsvgo">{t("footer.privacy")}</Link>
             <Link href="/login">{t("landing.navLogin")}</Link>
-          </span>
-          <span>
-            {t("landing.credits")}: Kurpark Oberlaa –{" "}
-            <a href="https://commons.wikimedia.org/w/index.php?curid=86569675">Anna Saini</a>, U1 Oberlaa –{" "}
-            <a href="https://commons.wikimedia.org/w/index.php?curid=63026410">Plani</a>,{" "}
-            <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
           </span>
           <span>{t("footer.copyright")}</span>
         </div>

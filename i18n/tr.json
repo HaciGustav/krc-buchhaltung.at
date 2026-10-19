@@ -187,7 +187,7 @@
       ],
       [
         "Yıl sonu kapanışı",
-        "Şahıs şirketleri ve küçük işletmeler için gelir-gider hesabı."
+        "Bilanço veya gelir-gider hesabı – şahıs şirketlerinden GmbH ve KG’lere kadar."
       ],
       [
         "Türkçe danışmanlık",
@@ -232,10 +232,8 @@
     "contactTitle": "İletişim ve ulaşım",
     "hoursRow": "Pzt–Prş 09:00–15:00",
     "write": "Bize yazın",
-    "parkCaption": "Büronun yakınındaki Kurpark Oberlaa",
-    "ubahnCaption": "U1 Oberlaa istasyonu",
     "footerInvite": "Muhasebenizle ilgili sorunuz mu var? Buradayız.",
     "top": "Yukarı",
-    "credits": "Fotoğraflar"
+    "servicesLead": "Cari muhasebeden yıl sonu kapanışına kadar her şey tek elden; şahıs şirketleri için de, şirketler için de."
   }
 }

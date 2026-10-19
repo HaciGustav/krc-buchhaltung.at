@@ -187,7 +187,7 @@
       ],
       [
         "Jahresabschluss",
-        "Einnahmen-Ausgaben-Rechnung für Einzelunternehmen und kleine Betriebe."
+        "Bilanz oder Einnahmen-Ausgaben-Rechnung – für Einzelunternehmen ebenso wie für GmbH und KG."
       ],
       [
         "Beratung auf Türkisch",
@@ -232,10 +232,8 @@
     "contactTitle": "Kontakt und Anfahrt",
     "hoursRow": "Mo–Do 09:00–15:00",
     "write": "Schreiben Sie uns",
-    "parkCaption": "Kurpark Oberlaa, in der Nachbarschaft der Kanzlei",
-    "ubahnCaption": "U1-Station Oberlaa",
     "footerInvite": "Fragen zu Ihrer Buchhaltung? Wir sind für Sie da.",
     "top": "Nach oben",
-    "credits": "Fotos"
+    "servicesLead": "Von der laufenden Buchhaltung bis zum Jahresabschluss: alles aus einer Hand, für Einzelunternehmen ebenso wie für Gesellschaften."
   }
 }
