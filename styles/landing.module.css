@@ -291,6 +291,41 @@
   outline: 2px solid var(--plum);
   outline-offset: -1px;
 }
+.date_field {
+  position: relative;
+  display: flex;
+}
+.date_field input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+.date_field button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  border: 1px solid var(--control);
+  border-left: 0;
+  background: #fff;
+  color: var(--plum);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.date_field button:hover {
+  background: var(--plum-50);
+}
+/* The native picker only supplies the calendar; it stays invisible under the button. */
+.date_field .date_picker {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 44px;
+  height: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
 .slip_line {
   display: flex;
   align-items: baseline;

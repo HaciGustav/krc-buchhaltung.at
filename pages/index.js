@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ArrowForward from "@mui/icons-material/ArrowForward";
+import CalendarMonthOutlined from "@mui/icons-material/CalendarMonthOutlined";
 import LangSwitch from "@/components/LangSwitch";
 import css from "@/styles/landing.module.css";
 
@@ -33,13 +34,44 @@ const fmt = (date, lang) =>
     year: "numeric",
   });
 
+// "2026-10-19" <-> "19.10.2026": the date field shows day first, as in the portal forms.
+const isoToText = (iso) => (iso ? iso.split("-").reverse().join(".") : "");
+const textToIso = (text) => {
+  const m = text.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  if (!m) return "";
+  const [d, mo, y] = [Number(m[1]), Number(m[2]), Number(m[3])];
+  const date = new Date(y, mo - 1, d);
+  return date.getDate() === d && date.getMonth() === mo - 1 ? `${m[3]}-${m[2]}-${m[1]}` : "";
+};
+// Digits only, dots inserted while typing: "1910" -> "19.10".
+const maskDate = (value) =>
+  value
+    .replace(/\D/g, "")
+    .slice(0, 8)
+    .replace(/^(\d{2})(\d)/, "$1.$2")
+    .replace(/^(\d{2}\.\d{2})(\d)/, "$1.$2");
+
 const DeadlineSlip = () => {
   const { t, i18n } = useTranslation();
   const [kind, setKind] = useState("registration");
   const [day, setDay] = useState("");
+  const [text, setText] = useState("");
+  const pickerRef = useRef(null);
 
-  // Today's date only on the client, so server and browser render the same markup.
-  useEffect(() => setDay(new Date().toISOString().slice(0, 10)), []);
+  const pick = (iso) => {
+    setDay(iso);
+    setText(isoToText(iso));
+  };
+
+  // Today's local date only on the client, so server and browser render the same markup.
+  useEffect(() => {
+    const now = new Date();
+    pick(
+      [now.getFullYear(), now.getMonth() + 1, now.getDate()]
+        .map((n) => String(n).padStart(2, "0"))
+        .join("-")
+    );
+  }, []);
 
   const [y, m, d] = day.split("-").map(Number);
   const event = day ? new Date(y, m - 1, d) : null;
@@ -59,10 +91,40 @@ const DeadlineSlip = () => {
           ))}
         </select>
       </label>
-      <label className={css.slip_row}>
-        <span>{t(`landing.calcDate.${kind}`)}</span>
-        <input type="date" value={day} onChange={(e) => setDay(e.target.value)} />
-      </label>
+      <div className={css.slip_row}>
+        <label htmlFor="deadline-date">{t(`landing.calcDate.${kind}`)}</label>
+        <div className={css.date_field}>
+          <input
+            id="deadline-date"
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            placeholder={t("landing.calcFormat")}
+            value={text}
+            onChange={(e) => {
+              const next = maskDate(e.target.value);
+              setText(next);
+              setDay(textToIso(next));
+            }}
+          />
+          <button
+            type="button"
+            aria-label={t("landing.calcOpen")}
+            onClick={() => pickerRef.current?.showPicker?.()}
+          >
+            <CalendarMonthOutlined sx={{ fontSize: 20 }} />
+          </button>
+          <input
+            ref={pickerRef}
+            type="date"
+            tabIndex={-1}
+            aria-hidden="true"
+            className={css.date_picker}
+            value={day}
+            onChange={(e) => pick(e.target.value)}
+          />
+        </div>
+      </div>
       <p className={css.slip_line}>
         <span>{t("landing.calcEvent")}</span>
         <i aria-hidden="true" />

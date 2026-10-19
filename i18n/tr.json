@@ -234,6 +234,8 @@
     "write": "Bize yazın",
     "footerInvite": "Muhasebenizle ilgili sorunuz mu var? Buradayız.",
     "top": "Yukarı",
-    "servicesLead": "Cari muhasebeden yıl sonu kapanışına kadar her şey tek elden; şahıs şirketleri için de, şirketler için de."
+    "servicesLead": "Cari muhasebeden yıl sonu kapanışına kadar her şey tek elden; şahıs şirketleri için de, şirketler için de.",
+    "calcFormat": "GG.AA.YYYY",
+    "calcOpen": "Takvimi aç"
   }
 }
