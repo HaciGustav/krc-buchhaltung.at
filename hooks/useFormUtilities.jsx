@@ -1,3 +1,4 @@
+import { validateSvNummer } from "@/utils/validationUtils";
 import { useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 const initModalProps = { open: false, fieldCaption: "", message: "" };
@@ -11,7 +12,9 @@ const useFormUtilities = () => {
     for (const { fieldName, fieldCaption } of requiredFields) {
       const fieldValue = formData[fieldName];
       if (fieldName == "insuranceNumberDN") {
-        const isvalid = /^\d{10}$/.test(fieldValue);
+        const validationRes = validateSvNummer(fieldValue);
+        const isvalid = validationRes.valid;
+        //const isvalid = /^\d{10}$/.test(fieldValue);
         if (!isvalid) {
           setWarningModalProps({
             open: true,
